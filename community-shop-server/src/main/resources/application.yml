@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/talis?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/com-shop?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
     username: root
     password: root
   servlet:
@@ -28,7 +28,8 @@ aliyun:
 
 # JWT
 jwt:
-  secret-key:
+  secret: ZmFuZ2dhb3poaWFpYWlmYW5nZ2FvZ2FvZmFuZ2FpYWl6aGlnYW9mYW5n
+  expire: 1000*60*60
 
 # port
 #server.port=8090

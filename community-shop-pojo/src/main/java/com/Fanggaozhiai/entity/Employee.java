@@ -22,7 +22,8 @@ public class Employee {
     private String name;
 
     /** 状态: 0空闲 1配送中 */
-    private Integer stage;
+    //默认值为0
+    private Integer stage = 0;
 
     /** 入职日期 */
     private LocalDate entryTime;
@@ -34,5 +35,6 @@ public class Employee {
     private String password;
 
     /** 岗位: 0管理员 1配送员 */
-    private Integer job;
+    //默认值为1
+    private Integer job = 1;
 }
