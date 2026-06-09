@@ -2,6 +2,7 @@ package com.Fanggaozhiai.service;
 
 import com.Fanggaozhiai.dto.EmployeeLoginDTO;
 import com.Fanggaozhiai.dto.EmployeePageParam;
+import com.Fanggaozhiai.dto.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
 import com.Fanggaozhiai.result.PageResult;
 import com.Fanggaozhiai.vo.LoginReturn;
@@ -20,7 +21,7 @@ public interface EmployeeService {
     Employee getInfo(Integer id);
 
     //通过 employee 的数据修改员工信息
-    void update(Employee employee);
+    void update(EmployeePut employeeput);
 
     //通过 id 删除员工
     void delete(Integer id);

@@ -2,6 +2,7 @@ package com.Fanggaozhiai.service.iml;
 
 import com.Fanggaozhiai.dto.EmployeeLoginDTO;
 import com.Fanggaozhiai.dto.EmployeePageParam;
+import com.Fanggaozhiai.dto.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
 import com.Fanggaozhiai.mapper.EmployeeMapper;
 import com.Fanggaozhiai.result.PageResult;
@@ -27,7 +28,7 @@ public class EmployeeServiceIml implements EmployeeService {
     @Override
     public LoginReturn login(EmployeeLoginDTO employeeLoginDTO) {
         // 根据用户名查询员工 返回员工
-        com.Fanggaozhiai.entity.Employee employee = employeeMapper.findByUsernameAndPassword();
+        Employee employee = employeeMapper.findByUsernameAndPassword(employeeLoginDTO);
         //查询到员工后 生成token
         if(employee != null)
         {
@@ -70,8 +71,8 @@ public class EmployeeServiceIml implements EmployeeService {
 
     //修改员工信息
     @Override
-    public void update(Employee employee) {
-        employeeMapper.update(employee);
+    public void update(EmployeePut employeePut) {
+        employeeMapper.update(employeePut);
     }
 
     //删除员工

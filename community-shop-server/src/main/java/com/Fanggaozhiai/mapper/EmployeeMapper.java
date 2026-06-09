@@ -1,6 +1,8 @@
 package com.Fanggaozhiai.mapper;
 
+import com.Fanggaozhiai.dto.EmployeeLoginDTO;
 import com.Fanggaozhiai.dto.EmployeePageParam;
+import com.Fanggaozhiai.dto.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -13,10 +15,10 @@ import java.util.List;
 public interface EmployeeMapper {
     //根据用户名查询员工
     @Select("SELECT * FROM employee WHERE username = #{username} AND password = #{password}")
-    Employee findByUsernameAndPassword();
+    Employee findByUsernameAndPassword(EmployeeLoginDTO employeeLoginDTO);
 
     //通过name entryTime username password添加员工
-    @Insert("INSERT INTO employee(name, entry_time, username, password) VALUES(#{name}, #{entryTime} ,#{username} ,#{password})")
+    @Insert("INSERT INTO employee(name, entry_time, username, password, job, stage) VALUES(#{name}, #{entryTime}, #{username}, #{password}, #{job}, #{stage})")
     void addByNameAndUsernameAndPassword(Employee employee);
 
     //通过 name 来模糊查询员工
@@ -28,7 +30,7 @@ public interface EmployeeMapper {
 
     //修改员工信息
     //姓名、登录账号、登录密码、岗位
-    void update(Employee employee);
+    void update(EmployeePut employeePut);
 
     @Delete("DELETE FROM employee WHERE id = #{id}")
     void deleteById(Integer id);

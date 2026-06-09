@@ -15,9 +15,6 @@
             <if test="password != null">
                 password = #{password},
             </if>
-            <if test="job != null">
-                job = #{job},
-            </if>
         </set>
         WHERE id = #{id}
     </update>
@@ -26,7 +23,7 @@
         SELECT * FROM employee
         <where>
             <if test="name != null">
-                name LIKE '%${name}%' ('%',#{name},'%')
+                name LIKE concat('%',#{name},'%')
             </if>
         </where>
         order by entry_time
