@@ -32,8 +32,8 @@ public class EmployeePermissionFilter implements Filter {
             //获取路径
             String path = request.getRequestURI();
             //2.判断请求路径是否是登录
-            if(Objects.equals(path, "/login")){
-                log.info("登录放行,获取token");
+            if(Objects.equals(path, "/emps/login") || Objects.equals(path, "/emps/register")){
+                log.info("登录或注册");
                 filterChain.doFilter(request, response);
                 return;
             }

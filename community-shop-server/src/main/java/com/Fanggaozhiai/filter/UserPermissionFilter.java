@@ -30,8 +30,8 @@ public class UserPermissionFilter implements Filter {
             //1.获取路径
             String path = request.getRequestURI();
             //2.判断是否为登录操作
-            if(Objects.equals(path,"/login")){
-                log.info("登录放行,获取token");
+            if(Objects.equals(path,"/users/login") || Objects.equals(path,"/users/register")){
+                log.info("登录或注册");
                 filterChain.doFilter(request,response);
                 return;
             }
