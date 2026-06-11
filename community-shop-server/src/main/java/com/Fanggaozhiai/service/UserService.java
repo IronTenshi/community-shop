@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.service;
 
-import com.Fanggaozhiai.dto.UserLoginDTO;
+import com.Fanggaozhiai.dto.UserLogin;
 import com.Fanggaozhiai.dto.UserPageParam;
 import com.Fanggaozhiai.dto.UserPut;
 import com.Fanggaozhiai.entity.Employee;
@@ -10,7 +10,7 @@ import com.Fanggaozhiai.vo.LoginReturn;
 
 public interface UserService {
     //根据 username password 登录查询
-    LoginReturn login(UserLoginDTO userLoginDTO);
+    LoginReturn login(UserLogin userLogin);
 
     // 注册
     void register(User user);
@@ -19,7 +19,7 @@ public interface UserService {
     PageResult<Employee> list(UserPageParam userPageParam);
 
     //根据 id 查询
-    Employee getInfo(Integer id);
+    User getInfo(Integer id);
 
     //修改用户信息
     void update(UserPut user);

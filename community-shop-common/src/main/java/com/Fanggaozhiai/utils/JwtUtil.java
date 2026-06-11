@@ -30,9 +30,9 @@ public class JwtUtil {
      * @param claims
      * @return
      */
-    public static String getToken(Map<String,Object> claims){
+    public static String getTokenEmp(Map<String,Object> claims){
         //获取固定密钥
-        SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getSecret()));
+        SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getEmployee()));
         return Jwts.builder()
                 .claims(claims)
                 .expiration(new Date(jwtConfig.getExpire()))
@@ -44,9 +44,25 @@ public class JwtUtil {
      * @param token
      * @return
      *  */
-    public static Claims parseToken(String token) {
+    public static Claims parseTokenEmp(String token) {
         //获取固定密钥
-        SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getSecret()));
+        SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getEmployee()));
+        return Jwts.parser().verifyWith(key).build().parseSignedClaims(token)
+                .getPayload();
+    }
+
+    public static String getTokenUser(Map<String,Object> claims){
+        //获取固定密钥
+        SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getUser()));
+        return Jwts.builder()
+                .claims(claims)
+                .expiration(new Date(jwtConfig.getExpire()))
+                .signWith(key)
+                .compact();
+    }
+    public static Claims parseTokenUser(String token) {
+        //获取固定密钥
+        SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getUser()));
         return Jwts.parser().verifyWith(key).build().parseSignedClaims(token)
                 .getPayload();
     }

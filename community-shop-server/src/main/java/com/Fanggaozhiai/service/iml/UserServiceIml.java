@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.service.iml;
 
-import com.Fanggaozhiai.dto.UserLoginDTO;
+import com.Fanggaozhiai.dto.UserLogin;
 import com.Fanggaozhiai.dto.UserPageParam;
 import com.Fanggaozhiai.dto.UserPut;
 import com.Fanggaozhiai.entity.Employee;
@@ -25,9 +25,9 @@ public class UserServiceIml implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Override
-    public LoginReturn login(UserLoginDTO userLoginDTO) {
+    public LoginReturn login(UserLogin userLogin) {
         // 根据用户名查询员工 返回员工
-        com.Fanggaozhiai.entity.User user= userMapper.findByUsernameAndPassword(userLoginDTO);
+        com.Fanggaozhiai.entity.User user= userMapper.findByUsernameAndPassword(userLogin);
         //查询到员工后 生成token
         if(user != null)
         {
@@ -35,7 +35,7 @@ public class UserServiceIml implements UserService {
             claims.put("id",user.getId());
             claims.put("username",user.getUsername());
             claims.put("phone",user.getPhone());
-            String token = JwtUtil.getToken(claims);
+            String token = JwtUtil.getTokenUser(claims);
             return new LoginReturn(user.getId(),user.getUsername(),token);
         }
         else {
@@ -65,7 +65,7 @@ public class UserServiceIml implements UserService {
 
     //查询返回单条详细数据
     @Override
-    public Employee getInfo(Integer id) {
+    public User getInfo(Integer id) {
         return userMapper.getInfo(id);
     }
 

@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.service;
 
-import com.Fanggaozhiai.dto.EmployeeLoginDTO;
+import com.Fanggaozhiai.dto.EmployeeLogin;
 import com.Fanggaozhiai.dto.EmployeePageParam;
 import com.Fanggaozhiai.dto.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
@@ -9,7 +9,7 @@ import com.Fanggaozhiai.vo.LoginReturn;
 
 public interface EmployeeService {
     //登录并且校验 token
-    LoginReturn login(EmployeeLoginDTO employeeLoginDTO);
+    LoginReturn login(EmployeeLogin employeeLogin);
 
     // 注册
     void register(Employee employee);

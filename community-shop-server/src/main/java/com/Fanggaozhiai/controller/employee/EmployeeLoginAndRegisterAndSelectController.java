@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.controller.employee;
 
-import com.Fanggaozhiai.dto.EmployeeLoginDTO;
+import com.Fanggaozhiai.dto.EmployeeLogin;
 import com.Fanggaozhiai.dto.EmployeePageParam;
 import com.Fanggaozhiai.entity.Employee;
 import com.Fanggaozhiai.result.PageResult;
@@ -19,12 +19,12 @@ public class EmployeeLoginAndRegisterAndSelectController {
     private EmployeeService employeeService;
     //根据员工username 和 password 登录
     @PostMapping("/login")
-    public Result login(@RequestBody EmployeeLoginDTO employeeLoginDTO){
-        log.info("员工登录: {}", employeeLoginDTO);
-        if(employeeLoginDTO == null){
+    public Result login(@RequestBody EmployeeLogin employeeLogin){
+        log.info("员工登录: {}", employeeLogin);
+        if(employeeLogin == null){
             log.info("用户名或密码为空");
         }
-        LoginReturn loginReturn = employeeService.login(employeeLoginDTO);
+        LoginReturn loginReturn = employeeService.login(employeeLogin);
         if(loginReturn == null){
             return Result.error("登录失败");
         }

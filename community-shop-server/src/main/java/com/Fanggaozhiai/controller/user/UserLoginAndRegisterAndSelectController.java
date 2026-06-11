@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.controller.user;
 
-import com.Fanggaozhiai.dto.UserLoginDTO;
+import com.Fanggaozhiai.dto.UserLogin;
 import com.Fanggaozhiai.dto.UserPageParam;
 import com.Fanggaozhiai.entity.Employee;
 import com.Fanggaozhiai.entity.User;
@@ -21,12 +21,12 @@ public class UserLoginAndRegisterAndSelectController {
     //登录功能
     //输入username password phone
     @PostMapping("/login")
-    public Result login(@RequestBody UserLoginDTO userLoginDTO){
-        log.info("用户登录: {}", userLoginDTO);
-        if(userLoginDTO == null){
+    public Result login(@RequestBody UserLogin userLogin){
+        log.info("用户登录: {}", userLogin);
+        if(userLogin == null){
             log.info("用户名或密码为空");
         }
-        LoginReturn loginReturn = userService.login(userLoginDTO);
+        LoginReturn loginReturn = userService.login(userLogin);
         if(loginReturn == null){
             return Result.error("登录失败");
         }
@@ -55,7 +55,7 @@ public class UserLoginAndRegisterAndSelectController {
     @GetMapping("/{id}")
     public Result getInfo(@PathVariable("id") Integer id){
         log.info("查询用户信息: {}", id);
-        Employee employee = userService.getInfo(id);
-        return Result.success(employee);
+        User user = userService.getInfo(id);
+        return Result.success(user);
     }
 }

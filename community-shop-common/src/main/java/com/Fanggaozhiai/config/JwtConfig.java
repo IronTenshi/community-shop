@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 public class JwtConfig {
     //注入属性
     @NotBlank(message = "secret不能为空")
-    private String secret;
+    private String employee;
     @NotNull(message = "expire不能为空")
     private long expire;
+    @NotBlank(message = "user不能为空")
+    private String user;
 }

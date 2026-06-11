@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.service.iml;
 
-import com.Fanggaozhiai.dto.EmployeeLoginDTO;
+import com.Fanggaozhiai.dto.EmployeeLogin;
 import com.Fanggaozhiai.dto.EmployeePageParam;
 import com.Fanggaozhiai.dto.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
@@ -26,16 +26,16 @@ public class EmployeeServiceIml implements EmployeeService {
 
     //登录
     @Override
-    public LoginReturn login(EmployeeLoginDTO employeeLoginDTO) {
+    public LoginReturn login(EmployeeLogin employeeLogin) {
         // 根据用户名查询员工 返回员工
-        Employee employee = employeeMapper.findByUsernameAndPassword(employeeLoginDTO);
+        Employee employee = employeeMapper.findByUsernameAndPassword(employeeLogin);
         //查询到员工后 生成token
         if(employee != null)
         {
             Map<String,Object> claims = new HashMap<>();
             claims.put("id",employee.getId());
             claims.put("username",employee.getUsername());
-            String token = JwtUtil.getToken(claims);
+            String token = JwtUtil.getTokenEmp(claims);
             return new LoginReturn(employee.getId(),employee.getUsername(),token);
         }
         else {

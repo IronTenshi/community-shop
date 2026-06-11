@@ -28,8 +28,9 @@ aliyun:
 
 # JWT
 jwt:
-  secret: ZmFuZ2dhb3poaWFpYWlmYW5nZ2FvZ2FvZmFuZ2FpYWl6aGlnYW9mYW5n
+  employee: ZmFuZ2dhb3poaWFpYWlmYW5nZ2FvZ2FvZmFuZ2FpYWl6aGlnYW9mYW5n
   expire: 3600000
+  user: ZmFuZ2dhb3poaWFpYWlmYW5nZ2FvZ2FvZmFuZ2FpYWl6aGlnYW9mYW5ndXNlcg==
 
 # port
 #server.port=8090

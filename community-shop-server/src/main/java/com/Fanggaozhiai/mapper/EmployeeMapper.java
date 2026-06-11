@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.mapper;
 
-import com.Fanggaozhiai.dto.EmployeeLoginDTO;
+import com.Fanggaozhiai.dto.EmployeeLogin;
 import com.Fanggaozhiai.dto.EmployeePageParam;
 import com.Fanggaozhiai.dto.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
@@ -15,7 +15,7 @@ import java.util.List;
 public interface EmployeeMapper {
     //根据用户名查询员工
     @Select("SELECT * FROM employee WHERE username = #{username} AND password = #{password}")
-    Employee findByUsernameAndPassword(EmployeeLoginDTO employeeLoginDTO);
+    Employee findByUsernameAndPassword(EmployeeLogin employeeLogin);
 
     //通过name entryTime username password添加员工
     @Insert("INSERT INTO employee(name, entry_time, username, password, job, stage) VALUES(#{name}, #{entryTime}, #{username}, #{password}, #{job}, #{stage})")
