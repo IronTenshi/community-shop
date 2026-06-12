@@ -31,14 +31,14 @@ public class EmployeePermissionFilter implements Filter {
         try {
             //获取路径
             String path = request.getRequestURI();
-            //2.判断请求路径是否是登录
-            if(Objects.equals(path, "/emps/login") || Objects.equals(path, "/emps/register")){
-                log.info("登录或注册");
-                filterChain.doFilter(request, response);
-                return;
-            }
+//            //2.判断请求路径是否是登录
+//            if(Objects.equals(path, "/emps/login") || Objects.equals(path, "/emps/register")){
+//                log.info("登录或注册");
+//                filterChain.doFilter(request, response);
+//                return;
+//            }
             //3.判断token
-            else {
+//            else {
                 //获取 token
                 String token = request.getHeader("token");
 
@@ -63,7 +63,7 @@ public class EmployeePermissionFilter implements Filter {
                         return;
                     }
                 }
-            }
+//            }
         }finally {
             Context.clear();
         }

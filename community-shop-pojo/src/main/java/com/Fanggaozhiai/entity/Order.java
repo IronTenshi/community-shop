@@ -18,6 +18,9 @@ public class Order {
     /** 订单ID，主键，自动递增 */
     private Integer id;
 
+    /** 对应用户ID，标识下单用户 */
+    private Integer userId;
+
     /** 订单金额 */
     private Integer money;
 

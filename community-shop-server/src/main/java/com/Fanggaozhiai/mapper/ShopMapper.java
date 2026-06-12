@@ -1,5 +1,6 @@
 package com.Fanggaozhiai.mapper;
 
+import com.Fanggaozhiai.dto.ShopPageParam;
 import com.Fanggaozhiai.dto.ShopPut;
 import com.Fanggaozhiai.entity.Merchant;
 import org.apache.ibatis.annotations.Delete;
@@ -25,6 +26,19 @@ public interface ShopMapper {
     List<Merchant> selectByUsId(Integer usId);
 
     //注册商铺
-    @Insert("INSERT INTO merchant(id, name, person, phone, us_id) VALUES(#{id},#{name},#{person},#{phone},#{usId}) ")
+    @Insert("INSERT INTO merchant(name, person, phone, us_id) VALUES(#{name},#{person},#{phone},#{usId}) ")
     void register(Merchant merchant);
+
+    //查询所有商铺信息
+    @Select("select * from merchant")
+    List<Merchant> selectAll();
+
+    //根据id查询商铺 信息
+    //校验是否与usid一致
+    @Select("select us_id from merchant where id = #{id}")
+    Integer selectById(Integer id);
+
+    //分页查询
+    //输入name
+    List<Merchant> list(ShopPageParam shopPageParam);
 }

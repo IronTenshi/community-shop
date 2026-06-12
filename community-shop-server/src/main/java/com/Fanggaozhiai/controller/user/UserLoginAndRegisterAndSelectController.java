@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/userss")
 public class UserLoginAndRegisterAndSelectController {
     @Autowired
     private UserService userService;
     //登录功能
-    //输入username password phone
+    //输入username password
     @PostMapping("/login")
     public Result login(@RequestBody UserLogin userLogin){
         log.info("用户登录: {}", userLogin);

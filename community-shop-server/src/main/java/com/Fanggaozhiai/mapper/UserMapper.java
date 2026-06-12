@@ -21,13 +21,15 @@ public interface UserMapper {
 
     //分页查询通过 username
     List<Employee> list(UserPageParam userPageParam);
-    //查询单条用户信息
 
+    //查询单条用户信息
     @Select("SELECT * FROM user WHERE id = #{id}")
     User getInfo(Integer id);
 
     //修改用户信息
     void update(UserPut user);
+
+    //删除用户
     @Delete("DELETE FROM user WHERE id = #{id}")
     void delete(Integer id);
 }

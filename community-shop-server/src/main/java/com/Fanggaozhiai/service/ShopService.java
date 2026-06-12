@@ -1,8 +1,10 @@
 package com.Fanggaozhiai.service;
 
+import com.Fanggaozhiai.dto.ShopPageParam;
 import com.Fanggaozhiai.dto.ShopPut;
 import com.Fanggaozhiai.dto.ShopRegister;
 import com.Fanggaozhiai.entity.Merchant;
+import com.Fanggaozhiai.result.PageResult;
 
 import java.util.List;
 
@@ -20,4 +22,9 @@ public interface ShopService {
 
     //查询商铺信息
     List<Merchant> selectByUsId();
+
+    //分页查询商铺信息
+    PageResult<Merchant> list(ShopPageParam shopPageParam);
+
+    int enterShop(Integer id);
 }

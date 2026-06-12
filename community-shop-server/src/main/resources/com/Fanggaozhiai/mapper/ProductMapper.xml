@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    ProductMapper XML配置文件
+    定义商品相关的SQL语句
+    namespace必须与对应的Mapper接口全限定名一致
+-->
+<mapper namespace="com.Fanggaozhiai.mapper.ProductMapper">
+
+    <!--
+        分页模糊查询商品列表
+        支持按商品名称进行模糊匹配查询
+        与PageHelper分页插件配合使用，实现物理分页
+    -->
+    <select id="list" resultType="com.Fanggaozhiai.entity.Product">
+        SELECT * FROM product
+        <where>
+            <!-- 动态SQL：当name参数不为空时，添加模糊查询条件 -->
+            <if test="name != null">
+                name LIKE concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <!--
+        添加商品
+        将商品信息插入到product表中
+        字段说明：
+        - name: 商品名称
+        - describe: 商品描述
+        - img: 商品图片URL（存储于阿里云OSS）
+        - stage: 商品状态，0有货 1无货，默认插入时由业务层或数据库默认值控制
+        - mer_id: 所属商铺ID，外键关联merchant表
+
+        注意：
+        - id字段为自增主键，不需要传入
+        - 使用useGeneratedKeys和keyProperty可以获取插入后自动生成的主键值
+    -->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO product(name, describe, img, stage, mer_id)
+        VALUES(#{name}, #{describe}, #{img}, #{stage}, #{merId})
+    </insert>
+
+</mapper>

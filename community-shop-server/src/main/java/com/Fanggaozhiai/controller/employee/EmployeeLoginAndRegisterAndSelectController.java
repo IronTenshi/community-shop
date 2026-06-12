@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/emps")
+@RequestMapping("/empss")
 public class EmployeeLoginAndRegisterAndSelectController {
     @Autowired
     private EmployeeService employeeService;

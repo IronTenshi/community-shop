@@ -29,15 +29,15 @@ public class UserPermissionFilter implements Filter {
         try {
             //1.获取路径
             String path = request.getRequestURI();
-            //2.判断是否为登录操作
-            if(Objects.equals(path,"/users/login") || Objects.equals(path,"/users/register")){
-                log.info("登录或注册");
-                filterChain.doFilter(request,response);
-                return;
-            }
+//            //2.判断是否为登录操作
+//            if(Objects.equals(path,"/users/login") || Objects.equals(path,"/users/register")){
+//                log.info("登录或注册");
+//                filterChain.doFilter(request,response);
+//                return;
+//            }
             //3.校验token
             //获取token
-            else{
+//            else{
                 String token = request.getHeader("token");
                 if(token == null || token.isEmpty()){
                     log.info("token 为空");
@@ -58,7 +58,7 @@ public class UserPermissionFilter implements Filter {
                         return;
                     }
                 }
-            }
+//            }
         }finally {
             Context.clear();
         }

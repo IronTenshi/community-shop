@@ -27,14 +27,13 @@ public class UserServiceIml implements UserService {
     @Override
     public LoginReturn login(UserLogin userLogin) {
         // 根据用户名查询员工 返回员工
-        com.Fanggaozhiai.entity.User user= userMapper.findByUsernameAndPassword(userLogin);
+        User user= userMapper.findByUsernameAndPassword(userLogin);
         //查询到员工后 生成token
         if(user != null)
         {
             Map<String,Object> claims = new HashMap<>();
             claims.put("id",user.getId());
             claims.put("username",user.getUsername());
-            claims.put("phone",user.getPhone());
             String token = JwtUtil.getTokenUser(claims);
             return new LoginReturn(user.getId(),user.getUsername(),token);
         }

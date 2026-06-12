@@ -46,4 +46,13 @@ public class ShopRegisterAndPutAndDeleteAndSelect {
         log.info("查询自身商铺信息");
         return Result.success(shopService.selectByUsId());
     }
+//    //进入商铺
+//    //输入商铺id
+//    //返回商品列表
+//    @GetMapping("/{id}")
+//    public Result enterShop(@PathVariable("id") Integer id){
+//        log.info("进入商铺: {}", id);
+//        shopService.enterShop(id);
+//        return Result.success();
+//    }
 }

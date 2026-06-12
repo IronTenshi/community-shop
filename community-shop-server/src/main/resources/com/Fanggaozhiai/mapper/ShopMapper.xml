@@ -19,4 +19,12 @@
         </set>
         WHERE id = #{id}
     </update>
+    <select id="list" resultType="com.Fanggaozhiai.entity.Merchant">
+        SELECT * FROM  merchant
+        <where>
+            <if test="name != null">
+                name LIKE concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

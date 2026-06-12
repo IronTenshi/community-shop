@@ -26,7 +26,7 @@ public class Product {
     private String img;
 
     /** 状态: 0有货 1无货 */
-    private Integer stage;
+    private Integer stage = 1;
 
     /** 对应商家ID */
     private Integer merId;
