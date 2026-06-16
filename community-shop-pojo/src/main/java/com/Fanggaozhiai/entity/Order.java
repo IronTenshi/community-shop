@@ -19,7 +19,7 @@ public class Order {
     private Integer id;
 
     /** 对应用户ID，标识下单用户 */
-    private Integer userId;
+    private Integer usId;
 
     /** 订单金额 */
     private Integer money;

@@ -20,7 +20,7 @@ public interface UserMapper {
     void addByNameAndUsernameAndPassword(User user);
 
     //分页查询通过 username
-    List<Employee> list(UserPageParam userPageParam);
+    List<User> list(UserPageParam userPageParam);
 
     //查询单条用户信息
     @Select("SELECT * FROM user WHERE id = #{id}")

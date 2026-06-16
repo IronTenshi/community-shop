@@ -35,7 +35,7 @@ public class JwtUtil {
         SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getEmployee()));
         return Jwts.builder()
                 .claims(claims)
-                .expiration(new Date(jwtConfig.getExpire()))
+                .expiration(new Date(System.currentTimeMillis() + jwtConfig.getExpire()))
                 .signWith(key)
                 .compact();
     }
@@ -56,7 +56,7 @@ public class JwtUtil {
         SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtConfig.getUser()));
         return Jwts.builder()
                 .claims(claims)
-                .expiration(new Date(jwtConfig.getExpire()))
+                .expiration(new Date(System.currentTimeMillis() + jwtConfig.getExpire()))
                 .signWith(key)
                 .compact();
     }

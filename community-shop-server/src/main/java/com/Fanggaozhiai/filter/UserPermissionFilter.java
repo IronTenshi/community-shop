@@ -10,10 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Slf4j
-@WebFilter(urlPatterns = "/users/*")
+@WebFilter(urlPatterns = {"/user/*", "/shops/*", "/users/products/*"})
 public class UserPermissionFilter implements Filter {
 
     @Override
@@ -26,43 +25,8 @@ public class UserPermissionFilter implements Filter {
         log.info("进入过滤器");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        try {
-            //1.获取路径
-            String path = request.getRequestURI();
-//            //2.判断是否为登录操作
-//            if(Objects.equals(path,"/users/login") || Objects.equals(path,"/users/register")){
-//                log.info("登录或注册");
-//                filterChain.doFilter(request,response);
-//                return;
-//            }
-            //3.校验token
-            //获取token
-//            else{
-                String token = request.getHeader("token");
-                if(token == null || token.isEmpty()){
-                    log.info("token 为空");
-                    response.setStatus(401);
-                    return;
-                }
-                else{
-                    log.info("校验 token");
-                    try {
-                        //存入 id 数据
-                        Claims claims = JwtUtil.parseTokenUser(token);
-                        Integer id = Integer.valueOf(claims.getId());
-                        Context.setUserId(id);
-                        //放行
-                        filterChain.doFilter(request,response);
-                    }catch (Exception e) {
-                        response.setStatus(401);
-                        return;
-                    }
-                }
-//            }
-        }finally {
-            Context.clear();
-        }
     }
+
 
     @Override
     public void destroy() {

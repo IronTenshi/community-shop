@@ -11,13 +11,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 员工公开接口控制器
+ * 提供无需登录即可访问的员工相关接口
+ * 基础路径: /emp
+ */
 @Slf4j
 @RestController
-@RequestMapping("/empss")
-public class EmployeeLoginAndRegisterAndSelectController {
+@RequestMapping("/emp")
+public class EmployeePublicController {
     @Autowired
     private EmployeeService employeeService;
-    //根据员工username 和 password 登录
+
+    /**
+     * 员工登录接口
+     * 根据用户名和密码进行身份验证，验证通过后返回JWT token
+     *
+     * @param employeeLogin 登录参数，包含 username(用户名) 和 password(密码)
+     * @return 登录成功返回 LoginReturn 对象（包含 id、username、token），失败返回错误信息
+     */
     @PostMapping("/login")
     public Result login(@RequestBody EmployeeLogin employeeLogin){
         log.info("员工登录: {}", employeeLogin);
@@ -25,33 +37,25 @@ public class EmployeeLoginAndRegisterAndSelectController {
             log.info("用户名或密码为空");
         }
         LoginReturn loginReturn = employeeService.login(employeeLogin);
-        if(loginReturn == null){
+        if(loginReturn == null || loginReturn.getToken() == null){
             return Result.error("登录失败");
         }
         log.info("登录成功: {}", loginReturn);
         return Result.success(loginReturn);
     }
-    //注册 创建
-    //根据 name username password 注册
-    @PostMapping("/register")
-    public Result register(@RequestBody Employee employee){
-        log.info("注册信息: {}",employee);
-        employeeService.register(employee);
-        return Result.success();
-    }
+
+    /**
+     * 分页查询员工列表接口（公开）
+     * 无需登录即可查询员工信息，支持按姓名模糊查询
+     *
+     * @param employeePageParam 分页查询参数，包含 page(页码，默认1)、pageSize(每页数量，默认10)、name(姓名，可选)
+     * @return 分页结果，包含总记录数和当前页员工列表
+     */
+    //分页查询员工（公开接口）
     @GetMapping
     public Result page(@RequestBody EmployeePageParam employeePageParam){
-        log.info("分页查询: {}", employeePageParam);
-        //返回分页数据
+        log.info("分页查询员工: {}", employeePageParam);
         PageResult<Employee> pageResult = employeeService.list(employeePageParam);
         return Result.success(pageResult);
-    }
-    //查询返回单条详细数据
-    //根据id查询
-    @GetMapping("/{id}")
-    public Result getInfo(@PathVariable("id") Integer id){
-        log.info("查询员工信息: {}", id);
-        Employee employee = employeeService.getInfo(id);
-        return Result.success(employee);
     }
 }

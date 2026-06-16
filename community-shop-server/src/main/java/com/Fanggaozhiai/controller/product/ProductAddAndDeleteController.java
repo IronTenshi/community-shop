@@ -78,12 +78,17 @@ public class ProductAddAndDeleteController {
     }
 
     /**
-     * 上传商品图片到阿里云OSS
+     * 上传商品图片到阿里云OSS接口
      * 图片上传接口不需要权限校验，因为上传图片本身不涉及商铺数据操作
      * 前端应先调用此接口上传图片，获取图片URL后再调用添加商品接口
      *
-     * @param file 上传的图片文件
-     * @return 操作结果，成功返回图片的OSS访问URL
+     * 前端调用示例：
+     * POST /users/products/upload
+     * Content-Type: multipart/form-data
+     * Body: file=图片文件
+     *
+     * @param file 上传的图片文件（multipart/form-data格式）
+     * @return 操作结果，成功返回图片的OSS访问URL（可用于商品img字段）
      * @throws IOException 文件读取异常
      * @throws ClientException OSS上传异常
      */

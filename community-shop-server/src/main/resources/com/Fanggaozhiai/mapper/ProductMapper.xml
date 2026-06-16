@@ -39,7 +39,7 @@
         - 使用useGeneratedKeys和keyProperty可以获取插入后自动生成的主键值
     -->
     <insert id="add" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO product(name, describe, img, stage, mer_id)
+        INSERT INTO product(name, `describe`, img, stage, mer_id)
         VALUES(#{name}, #{describe}, #{img}, #{stage}, #{merId})
     </insert>
 

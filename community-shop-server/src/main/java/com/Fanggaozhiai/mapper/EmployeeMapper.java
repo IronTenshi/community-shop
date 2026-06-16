@@ -13,6 +13,7 @@ import java.util.List;
 
 @Mapper
 public interface EmployeeMapper {
+    //登录
     //根据用户名查询员工
     @Select("SELECT * FROM employee WHERE username = #{username} AND password = #{password}")
     Employee findByUsernameAndPassword(EmployeeLogin employeeLogin);

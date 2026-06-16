@@ -16,7 +16,7 @@ public interface UserService {
     void register(User user);
 
     //分页查询操作
-    PageResult<Employee> list(UserPageParam userPageParam);
+    PageResult<User> list(UserPageParam userPageParam);
 
     //根据 id 查询
     User getInfo(Integer id);

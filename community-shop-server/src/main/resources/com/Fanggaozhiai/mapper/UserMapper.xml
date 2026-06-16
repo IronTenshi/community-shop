@@ -3,6 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Fanggaozhiai.mapper.UserMapper">
+
+    <!--
+        动态更新用户信息
+        根据传入的 UserPut 对象中非空字段，选择性更新用户名、手机号、密码、收货地址
+        WHERE 条件：根据 id 定位要修改的用户
+    -->
     <update id="update">
         update user
         <set>
@@ -22,13 +28,18 @@
         where id = #{id}
     </update>
 
-    <select id="list" resultType="com.Fanggaozhiai.entity.Employee">
+    <!--
+        分页模糊查询用户列表
+        支持按用户名进行模糊匹配，按注册时间降序排列（新用户在前）
+        与 PageHelper 分页插件配合使用，实现物理分页
+    -->
+    <select id="list" resultType="com.Fanggaozhiai.entity.User">
         select * from user
         <where>
             <if test="username != null">
                 username like concat('%',#{username},'%')
             </if>
         </where>
-        order by entry_time desc
+        order by create_time desc
     </select>
 </mapper>

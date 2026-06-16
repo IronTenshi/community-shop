@@ -51,13 +51,13 @@ public class UserServiceIml implements UserService {
     }
     //分页查询
     @Override
-    public PageResult<Employee> list(UserPageParam userPageParam) {
+    public PageResult<User> list(UserPageParam userPageParam) {
         //开启分页
         PageHelper.startPage(userPageParam.getPage(),userPageParam.getPageSize());
         //查询到所有数据
-        List<Employee> list = userMapper.list(userPageParam);
+        List<User> list = userMapper.list(userPageParam);
         //强转为 list 类型以用来返回到前端
-        Page<Employee> page = (Page<Employee>) list;
+        Page<User> page = (Page<User>) list;
         //返回分页数据
         return new PageResult<>(page.getTotal(),page.getResult());
     }
