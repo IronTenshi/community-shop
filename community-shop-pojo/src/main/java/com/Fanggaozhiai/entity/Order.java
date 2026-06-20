@@ -25,7 +25,8 @@ public class Order {
     private Integer money;
 
     /** 状态: 0未送达 1已送达完成 */
-    private Integer stage;
+    //默认0未送达
+    private Integer stage = 0;
 
     /** 收货地址 */
     private String reAddress;

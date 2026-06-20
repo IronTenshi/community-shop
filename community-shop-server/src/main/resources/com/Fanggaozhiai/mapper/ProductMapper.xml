@@ -43,4 +43,12 @@
         VALUES(#{name}, #{describe}, #{img}, #{stage}, #{merId})
     </insert>
 
+    <!--
+        根据ID删除商品
+        WHERE id = #{id} 精确匹配要删除的商品
+    -->
+    <delete id="deleteById">
+        DELETE FROM product WHERE id = #{id}
+    </delete>
+
 </mapper>

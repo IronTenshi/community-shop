@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Context {
     private static final ThreadLocal<Integer> IdHolder = new ThreadLocal<>();
 
-    public static void setUserId(Integer Id) {
+    public static void setId(Integer Id) {
         log.info("设置用户id: {}", Id);
         IdHolder.set(Id);
     }

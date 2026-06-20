@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 @Slf4j
-@WebFilter(urlPatterns = {"/user/*", "/shops/*", "/users/products/*"})
+@WebFilter(urlPatterns = {"/user/*", "/shops/*", "/users/products/*","/users/orders/*"})
 public class UserPermissionFilter implements Filter {
 
     @Override
@@ -25,8 +25,33 @@ public class UserPermissionFilter implements Filter {
         log.info("进入过滤器");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        try {
+            //获取token
+            String token = request.getHeader("token");
+            //验证token合法性
+            if (token == null || token.isBlank()){
+                log.info("token为空或不存在");
+                response.setStatus(401);
+                return;
+            }
+            //验证token
+            Claims claims = JwtUtil.parseTokenUser(token);
+            Integer id = getUserId(claims);
+            //存入上下文工具
+            Context.setId(id);
+            //放行请求
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            Context.clear();
+        }
     }
 
+    //从上下文中获取id
+    private Integer getUserId(Claims claims){
+        return claims.get("id", Integer.class);
+    }
 
     @Override
     public void destroy() {

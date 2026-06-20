@@ -3,6 +3,7 @@ package com.Fanggaozhiai.mapper;
 import com.Fanggaozhiai.dto.ProductPageParam;
 import com.Fanggaozhiai.entity.Product;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -32,4 +33,22 @@ public interface ProductMapper {
      * @param product 商品实体对象，包含名称、描述、图片、状态、所属商铺ID等信息
      */
     void add(Product product);
+
+    /**
+     * 根据ID查询商品
+     * 用于权限校验时获取商品的mer_id
+     *
+     * @param id 商品ID
+     * @return 商品实体，包含mer_id等信息
+     */
+    @Select("SELECT * FROM product WHERE id = #{id}")
+    Product selectById(Integer id);
+
+    /**
+     * 根据ID删除商品
+     * 需配合权限校验，确保只有商铺持有者才能删除
+     *
+     * @param id 商品ID
+     */
+    void deleteById(Integer id);
 }

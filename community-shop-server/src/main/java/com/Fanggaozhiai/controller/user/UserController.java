@@ -1,5 +1,6 @@
 package com.Fanggaozhiai.controller.user;
 
+import com.Fanggaozhiai.context.Context;
 import com.Fanggaozhiai.dto.UserPut;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.UserService;
@@ -31,23 +32,26 @@ public class UserController {
     //修改用户信息
     @PutMapping
     public Result update(@RequestBody UserPut userPut){
+        //获取当前用户ID,防止越权管理
+        Integer id = Context.getId();
+        userPut.setId(id);
         log.info("修改用户信息: {}", userPut);
         userService.update(userPut);
         return Result.success();
     }
 
-    /**
-     * 删除用户接口
-     * 根据用户ID删除用户账号
-     *
-     * @param id 用户ID，从URL路径中获取
-     * @return 操作结果，成功返回 success
-     */
-    //删除用户信息
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable("id") Integer id){
-        log.info("删除用户信息: {}", id);
-        userService.delete(id);
-        return Result.success();
-    }
+//    /**
+//     * 删除用户接口
+//     * 根据用户ID删除用户账号
+//     *
+//     * @param id 用户ID，从URL路径中获取
+//     * @return 操作结果，成功返回 success
+//     */
+//    //删除用户信息
+//    @DeleteMapping("/{id}")
+//    public Result delete(@PathVariable("id") Integer id){
+//        log.info("删除用户信息: {}", id);
+//        userService.delete(id);
+//        return Result.success();
+//    }
 }

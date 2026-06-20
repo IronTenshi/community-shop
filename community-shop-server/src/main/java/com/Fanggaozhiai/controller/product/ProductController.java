@@ -29,7 +29,7 @@ import java.io.IOException;
 @Slf4j
 @RestController
 @RequestMapping("/users/products")
-public class ProductAddAndDeleteController {
+public class ProductController {
 
     @Autowired
     private AliyuOSSUtil aliyuOSSUtil;
@@ -105,5 +105,30 @@ public class ProductAddAndDeleteController {
         String url = aliyuOSSUtil.upload(file.getBytes(), originalFilename);
         log.info("图片上传成功，访问URL: {}", url);
         return Result.success(url);
+    }
+
+    /**
+     * 删除商品接口
+     * 只有商品所属商铺的持有者才能删除
+     *
+     * 权限校验流程：
+     * 1. 请求首先经过 UserPermissionFilter 过滤器，校验用户登录状态
+     * 2. 进入本方法后，调用 ProductService.delete() 进行权限校验
+     * 3. ProductService 会查询商品所属商铺，校验当前用户是否为该商铺持有者
+     * 4. 校验通过后执行删除操作
+     *
+     * 前端调用示例：
+     * DELETE /users/products/5
+     * Header: token=xxx
+     *
+     * @param id 商品ID，从URL路径中提取
+     * @return 操作结果
+     */
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id) {
+        log.info("收到删除商品请求，商品ID: {}", id);
+        productService.delete(id);
+        log.info("商品删除请求处理完成");
+        return Result.success();
     }
 }

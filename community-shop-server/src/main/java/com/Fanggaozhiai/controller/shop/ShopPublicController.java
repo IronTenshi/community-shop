@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/shopss")
-public class ShopSelectController {
+public class ShopPublicController {
     @Autowired
     private ShopService shopService;
 

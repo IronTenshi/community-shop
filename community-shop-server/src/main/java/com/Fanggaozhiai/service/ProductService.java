@@ -14,4 +14,7 @@ public interface ProductService {
     //添加商品
     //name describe img
     void add(Product product);
+
+    //删除商品
+    void delete(Integer id);
 }

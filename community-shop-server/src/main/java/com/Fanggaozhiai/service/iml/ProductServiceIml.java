@@ -89,4 +89,44 @@ public class ProductServiceIml implements ProductService {
         productMapper.add(product);
         log.info("商品添加成功");
     }
+
+    /**
+     * 删除商品
+     * 权限校验：只有商品所属商铺的持有者才能删除
+     * 校验流程：
+     * 1. 根据商品ID查询商品信息，获取所属商铺ID
+     * 2. 查询该商铺的持有者用户ID
+     * 3. 比对当前登录用户ID与商铺持有者ID
+     * 4. 校验通过后执行删除
+     *
+     * @param id 商品ID
+     */
+    @Override
+    public void delete(Integer id) {
+        Integer currentUserId = Context.getId();
+        log.info("当前登录用户ID: {}, 尝试删除商品ID: {}", currentUserId, id);
+
+        // 查询商品信息，获取所属商铺ID
+        Product product = productMapper.selectById(id);
+        if (product == null) {
+            log.error("商品不存在，商品ID: {}", id);
+            throw new RuntimeException("商品不存在");
+        }
+
+        // 查询该商铺的持有者
+        Integer shopOwnerId = shopMapper.selectById(product.getMerId());
+        if (shopOwnerId == null) {
+            log.error("商铺不存在，商铺ID: {}", product.getMerId());
+            throw new RuntimeException("商铺不存在");
+        }
+
+        if (!currentUserId.equals(shopOwnerId)) {
+            log.warn("权限拒绝：用户ID {} 尝试删除商品ID {}，但该商铺持有者为用户ID {}",
+                    currentUserId, id, shopOwnerId);
+            throw new RuntimeException("无权限：您不是该商铺的持有者，无法删除商品");
+        }
+
+        productMapper.deleteById(id);
+        log.info("商品删除成功，商品ID: {}", id);
+    }
 }

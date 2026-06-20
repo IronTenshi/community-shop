@@ -1,13 +1,16 @@
 package com.Fanggaozhiai.controller.shop;
 
+import com.Fanggaozhiai.context.Context;
 import com.Fanggaozhiai.dto.ShopPut;
 import com.Fanggaozhiai.dto.ShopRegister;
-import com.Fanggaozhiai.entity.Merchant;
+import com.Fanggaozhiai.mapper.ShopMapper;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.ShopService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 /**
  * 商铺注册、修改、删除与查询控制器
@@ -18,9 +21,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/shops")
-public class ShopRegisterAndPutAndDeleteAndSelect {
+public class ShopController {
     @Autowired
     private ShopService shopService;
+    @Autowired
+    private ShopMapper shopMapper;
 
     /**
      * 注册商铺接口
@@ -48,9 +53,14 @@ public class ShopRegisterAndPutAndDeleteAndSelect {
     //修改商铺信息
     //传入id
     //name person phone
-    @PostMapping("/update")
+    @PutMapping("/update")
     public Result update(@RequestBody ShopPut shopPut){
         log.info("修改商铺信息: {}", shopPut);
+        // 查询商铺归属的用户ID，校验是否为当前用户
+        Integer shopOwnerId = shopMapper.selectById(shopPut.getId());
+        if(!Objects.equals(Context.getId(), shopOwnerId)){
+            return Result.error("无权限修改");
+        }
         shopService.update(shopPut);
         return Result.success();
     }

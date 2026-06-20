@@ -60,7 +60,7 @@ public class EmployeePermissionFilter implements Filter {
 
             //设置当前用户ID到上下文
             //以便于后续业务逻辑使用
-            Context.setUserId(id);
+            Context.setId(id);
 
             //admin层验证信息job = 0
             if(path.startsWith("/admin")){
