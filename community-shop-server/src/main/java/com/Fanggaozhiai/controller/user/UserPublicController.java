@@ -1,7 +1,7 @@
 package com.Fanggaozhiai.controller.user;
 
-import com.Fanggaozhiai.dto.UserLogin;
-import com.Fanggaozhiai.dto.UserPageParam;
+import com.Fanggaozhiai.dto.user.UserLogin;
+import com.Fanggaozhiai.dto.user.UserPageParam;
 import com.Fanggaozhiai.entity.User;
 import com.Fanggaozhiai.result.PageResult;
 import com.Fanggaozhiai.result.Result;
@@ -37,6 +37,7 @@ public class UserPublicController {
         log.info("用户登录: {}", userLogin);
         if(userLogin == null){
             log.info("用户名或密码为空");
+            return Result.error("用户名或密码为空");
         }
         LoginReturn loginReturn = userService.login(userLogin);
         if(loginReturn == null){

@@ -1,7 +1,8 @@
 package com.Fanggaozhiai.mapper;
 
-import com.Fanggaozhiai.dto.ProductPageParam;
+import com.Fanggaozhiai.dto.product.ProductPageParam;
 import com.Fanggaozhiai.entity.Product;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -51,4 +52,13 @@ public interface ProductMapper {
      * @param id 商品ID
      */
     void deleteById(Integer id);
+
+    /**
+     * 根据商铺ID删除商品
+     * 需配合权限校验，确保只有商铺持有者才能删除
+     *
+     * @param id 商铺ID
+     */
+    @Delete("DELETE FROM product WHERE mer_id = #{id}")
+    void deleteByMerId(Integer id);
 }

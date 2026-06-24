@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.controller.product;
 
-import com.Fanggaozhiai.dto.ProductPageParam;
+import com.Fanggaozhiai.dto.product.ProductPageParam;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

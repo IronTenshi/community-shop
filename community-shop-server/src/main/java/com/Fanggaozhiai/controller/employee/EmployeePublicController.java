@@ -1,7 +1,7 @@
 package com.Fanggaozhiai.controller.employee;
 
-import com.Fanggaozhiai.dto.EmployeeLogin;
-import com.Fanggaozhiai.dto.EmployeePageParam;
+import com.Fanggaozhiai.dto.employee.EmployeeLogin;
+import com.Fanggaozhiai.dto.employee.EmployeePageParam;
 import com.Fanggaozhiai.entity.Employee;
 import com.Fanggaozhiai.result.PageResult;
 import com.Fanggaozhiai.result.Result;
@@ -35,6 +35,7 @@ public class EmployeePublicController {
         log.info("员工登录: {}", employeeLogin);
         if(employeeLogin == null){
             log.info("用户名或密码为空");
+            return Result.error("用户名或密码为空");
         }
         LoginReturn loginReturn = employeeService.login(employeeLogin);
         if(loginReturn == null || loginReturn.getToken() == null){

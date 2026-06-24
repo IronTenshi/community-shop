@@ -1,8 +1,8 @@
 package com.Fanggaozhiai.mapper;
 
-import com.Fanggaozhiai.dto.EmployeeLogin;
-import com.Fanggaozhiai.dto.EmployeePageParam;
-import com.Fanggaozhiai.dto.EmployeePut;
+import com.Fanggaozhiai.dto.employee.EmployeeLogin;
+import com.Fanggaozhiai.dto.employee.EmployeePageParam;
+import com.Fanggaozhiai.dto.employee.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

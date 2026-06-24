@@ -1,4 +1,4 @@
-package com.Fanggaozhiai.dto;
+package com.Fanggaozhiai.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -42,7 +42,8 @@ public class UserPermissionFilter implements Filter {
             //放行请求
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.info("用户权限校验失败", e);
+            response.setStatus(401);
         } finally {
             Context.clear();
         }

@@ -1,8 +1,8 @@
 package com.Fanggaozhiai.controller.shop;
 
 import com.Fanggaozhiai.context.Context;
-import com.Fanggaozhiai.dto.ShopPut;
-import com.Fanggaozhiai.dto.ShopRegister;
+import com.Fanggaozhiai.dto.shop.ShopPut;
+import com.Fanggaozhiai.dto.shop.ShopRegister;
 import com.Fanggaozhiai.mapper.ShopMapper;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.ShopService;

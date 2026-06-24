@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.controller.shop;
 
-import com.Fanggaozhiai.dto.ShopPageParam;
+import com.Fanggaozhiai.dto.shop.ShopPageParam;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.ShopService;
 import lombok.extern.slf4j.Slf4j;

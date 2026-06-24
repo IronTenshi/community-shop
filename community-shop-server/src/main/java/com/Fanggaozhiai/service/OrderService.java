@@ -1,6 +1,6 @@
 package com.Fanggaozhiai.service;
 
-import com.Fanggaozhiai.dto.OrderParam;
+import com.Fanggaozhiai.dto.order.OrderParam;
 import com.Fanggaozhiai.entity.Order;
 
 import java.util.List;

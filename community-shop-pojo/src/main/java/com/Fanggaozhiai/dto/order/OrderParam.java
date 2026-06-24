@@ -1,4 +1,4 @@
-package com.Fanggaozhiai.dto;
+package com.Fanggaozhiai.dto.order;
 
 import com.Fanggaozhiai.entity.OrderItem;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 public class OrderParam {
     private Integer id;
     private Integer usId;
-    private Integer money;
+    private double money;
     private String reAddress;
     private LocalDate createTime;
     private List<OrderItem> orderItems;

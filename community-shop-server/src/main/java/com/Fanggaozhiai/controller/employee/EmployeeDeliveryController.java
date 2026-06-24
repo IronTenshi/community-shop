@@ -1,7 +1,7 @@
 package com.Fanggaozhiai.controller.employee;
 
 import com.Fanggaozhiai.context.Context;
-import com.Fanggaozhiai.dto.EmployeePut;
+import com.Fanggaozhiai.dto.employee.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.EmployeeService;

@@ -1,7 +1,7 @@
 package com.Fanggaozhiai.mapper;
 
-import com.Fanggaozhiai.dto.ShopPageParam;
-import com.Fanggaozhiai.dto.ShopPut;
+import com.Fanggaozhiai.dto.shop.ShopPageParam;
+import com.Fanggaozhiai.dto.shop.ShopPut;
 import com.Fanggaozhiai.entity.Merchant;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -41,4 +41,8 @@ public interface ShopMapper {
     //分页查询
     //输入name
     List<Merchant> list(ShopPageParam shopPageParam);
+
+//    //查询店铺返回店铺值
+//    @Select("select * from merchant where id = #{id}")
+//    Merchant select(Integer id);
 }

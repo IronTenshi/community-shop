@@ -1,4 +1,4 @@
-package com.Fanggaozhiai.dto;
+package com.Fanggaozhiai.dto.shop;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShopPut {
-    private Integer id;
+public class ShopPageParam {
+    private Integer page = 1;
+    private Integer pageSize = 10;
     private String name;
-    private String person;
-    private String phone;
 }

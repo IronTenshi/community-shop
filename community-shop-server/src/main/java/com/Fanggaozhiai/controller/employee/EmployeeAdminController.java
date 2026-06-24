@@ -1,9 +1,7 @@
 package com.Fanggaozhiai.controller.employee;
 
-import com.Fanggaozhiai.dto.EmployeePageParam;
-import com.Fanggaozhiai.dto.EmployeePut;
+import com.Fanggaozhiai.dto.employee.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
-import com.Fanggaozhiai.result.PageResult;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;

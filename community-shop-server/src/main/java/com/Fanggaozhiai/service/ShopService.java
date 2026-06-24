@@ -1,8 +1,8 @@
 package com.Fanggaozhiai.service;
 
-import com.Fanggaozhiai.dto.ShopPageParam;
-import com.Fanggaozhiai.dto.ShopPut;
-import com.Fanggaozhiai.dto.ShopRegister;
+import com.Fanggaozhiai.dto.shop.ShopPageParam;
+import com.Fanggaozhiai.dto.shop.ShopPut;
+import com.Fanggaozhiai.dto.shop.ShopRegister;
 import com.Fanggaozhiai.entity.Merchant;
 import com.Fanggaozhiai.result.PageResult;
 

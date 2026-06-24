@@ -22,7 +22,7 @@ public class Order {
     private Integer usId;
 
     /** 订单金额 */
-    private Integer money;
+    private double money;
 
     /** 状态: 0未送达 1已送达完成 */
     //默认0未送达

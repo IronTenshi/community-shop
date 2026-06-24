@@ -1,7 +1,7 @@
 package com.Fanggaozhiai.controller.user;
 
 import com.Fanggaozhiai.context.Context;
-import com.Fanggaozhiai.dto.UserPut;
+import com.Fanggaozhiai.dto.user.UserPut;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.UserService;
 import lombok.extern.slf4j.Slf4j;

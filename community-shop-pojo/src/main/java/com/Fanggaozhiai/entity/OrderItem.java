@@ -26,8 +26,8 @@ public class OrderItem {
     private Integer num;
 
     /** 商品单价 */
-    private Integer perMoney;
+    private double perMoney;
 
     /** 商品总价 */
-    private Integer total;
+    private double total;
 }

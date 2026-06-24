@@ -1,4 +1,4 @@
-package com.Fanggaozhiai.dto;
+package com.Fanggaozhiai.dto.employee;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,11 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//修改员工信息
-//name username password
-public class EmployeePut {
-    private Integer id;
+public class EmployeeLogin {
     private String username;
     private String password;
-    private String name;
 }

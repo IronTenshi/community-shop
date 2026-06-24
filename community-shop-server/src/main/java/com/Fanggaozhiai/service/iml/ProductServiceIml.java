@@ -1,7 +1,7 @@
 package com.Fanggaozhiai.service.iml;
 
 import com.Fanggaozhiai.context.Context;
-import com.Fanggaozhiai.dto.ProductPageParam;
+import com.Fanggaozhiai.dto.product.ProductPageParam;
 import com.Fanggaozhiai.entity.Product;
 import com.Fanggaozhiai.mapper.ProductMapper;
 import com.Fanggaozhiai.mapper.ShopMapper;

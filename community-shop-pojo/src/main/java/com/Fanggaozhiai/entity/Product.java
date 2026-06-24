@@ -26,8 +26,12 @@ public class Product {
     private String img;
 
     /** 状态: 0有货 1无货 */
-    private Integer stage = 1;
+    //默认有货
+    private Integer stage = 0;
 
     /** 对应商家ID */
     private Integer merId;
+
+    /** 价格 */
+    private double price;
 }
