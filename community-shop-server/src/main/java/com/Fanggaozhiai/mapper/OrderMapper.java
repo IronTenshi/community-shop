@@ -48,4 +48,13 @@ public interface OrderMapper {
      */
     @Delete("delete from `order` where id = #{id}")
     void delete(Integer id);
+
+    @Select("select * from `order` where stage = 0")
+    List<Order> listByStage();
+
+    @Update("update `order` set stage = 1 where id = #{id}" )
+    void complete(Integer id);
+
+    @Select("select * from `order`")
+    List<Order> listAll();
 }

@@ -129,4 +129,39 @@ public class ProductServiceIml implements ProductService {
         productMapper.deleteById(id);
         log.info("商品删除成功，商品ID: {}", id);
     }
+
+    /**
+     * 修改商品上下架状态
+     * 商家可以随时设置商品为有货(0)或无货(1)
+     * 权限校验：只有商品所属商铺的持有者才能修改
+     *
+     * @param id    商品ID
+     * @param stage 商品状态，0有货（上架），1无货（下架）
+     */
+    @Override
+    public void updateStage(Integer id, Integer stage) {
+        Integer currentUserId = Context.getId();
+        log.info("当前登录用户ID: {}, 修改商品ID: {} 的状态为: {}", currentUserId, id, stage);
+
+        if (stage == null || (stage != 0 && stage != 1)) {
+            throw new RuntimeException("商品状态参数无效，只能为0（有货）或1（无货）");
+        }
+
+        Product product = productMapper.selectById(id);
+        if (product == null) {
+            throw new RuntimeException("商品不存在");
+        }
+
+        Integer shopOwnerId = shopMapper.selectById(product.getMerId());
+        if (shopOwnerId == null) {
+            throw new RuntimeException("商铺不存在");
+        }
+
+        if (!currentUserId.equals(shopOwnerId)) {
+            throw new RuntimeException("无权限：您不是该商铺的持有者，无法修改商品状态");
+        }
+
+        productMapper.updateStage(id, stage);
+        log.info("商品状态修改成功，商品ID: {}, 新状态: {}", id, stage == 0 ? "有货" : "无货");
+    }
 }

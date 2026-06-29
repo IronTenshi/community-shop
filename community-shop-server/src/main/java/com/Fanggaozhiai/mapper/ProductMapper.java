@@ -4,7 +4,9 @@ import com.Fanggaozhiai.dto.product.ProductPageParam;
 import com.Fanggaozhiai.entity.Product;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -61,4 +63,14 @@ public interface ProductMapper {
      */
     @Delete("DELETE FROM product WHERE mer_id = #{id}")
     void deleteByMerId(Integer id);
+
+    /**
+     * 更新商品上下架状态
+     * 0有货（上架） 1无货（下架）
+     *
+     * @param id    商品ID
+     * @param stage 状态值，0或1
+     */
+    @Update("update product set stage = #{stage} where id = #{id}")
+    void updateStage(@Param("id") Integer id, @Param("stage") Integer stage);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * 商品添加与删除控制器
@@ -129,6 +130,29 @@ public class ProductController {
         log.info("收到删除商品请求，商品ID: {}", id);
         productService.delete(id);
         log.info("商品删除请求处理完成");
+        return Result.success();
+    }
+
+    /**
+     * 修改商品上下架状态接口
+     * 商家可以随时设置商品为有货(0)或无货(1)
+     * 只有商品所属商铺的持有者才能修改
+     *
+     * 前端调用示例：
+     * PUT /users/products/5/stage
+     * Header: token=xxx
+     * Body: { "stage": 0 }
+     *
+     * @param id   商品ID，从URL路径中提取
+     * @param body 包含 stage 字段的请求体
+     * @return 操作结果
+     */
+    @PutMapping("/{id}/stage")
+    public Result updateStage(@PathVariable Integer id, @RequestBody Map<String, Integer> body) {
+        Integer stage = body.get("stage");
+        log.info("收到修改商品状态请求，商品ID: {}, 目标状态: {}", id, stage);
+        productService.updateStage(id, stage);
+        log.info("商品状态修改请求处理完成");
         return Result.success();
     }
 }

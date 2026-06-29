@@ -15,4 +15,11 @@ public interface ProductService {
 
     //删除商品
     void delete(Integer id);
+
+    /**
+     * 修改商品上下架状态
+     * @param id    商品ID
+     * @param stage 0有货 1无货
+     */
+    void updateStage(Integer id, Integer stage);
 }
