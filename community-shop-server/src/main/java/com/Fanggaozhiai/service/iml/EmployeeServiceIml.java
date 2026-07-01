@@ -44,7 +44,7 @@ public class EmployeeServiceIml implements EmployeeService {
             claims.put("id",employee.getId());
             claims.put("username",employee.getUsername());
             String token = JwtUtil.getTokenEmp(claims);
-            return new LoginReturn(employee.getId(),employee.getUsername(),token);
+            return new LoginReturn(employee.getId(),employee.getUsername(),token,employee.getJob());
         }
         else {
             return new LoginReturn(null,null,null);

@@ -94,7 +94,7 @@ public class ProductController {
      * @throws ClientException OSS上传异常
      */
     @PostMapping("/upload")
-    public Result upload(MultipartFile file) throws IOException, ClientException {
+    public Result upload(@RequestParam("file") MultipartFile file) throws IOException, ClientException {
         log.info("收到图片上传请求，文件名: {}", file.getOriginalFilename());
         // 获取原始文件名
         String originalFilename = file.getOriginalFilename();
@@ -126,7 +126,7 @@ public class ProductController {
      * @return 操作结果
      */
     @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Integer id) {
+    public Result delete(@PathVariable("id") Integer id) {
         log.info("收到删除商品请求，商品ID: {}", id);
         productService.delete(id);
         log.info("商品删除请求处理完成");
@@ -148,11 +148,34 @@ public class ProductController {
      * @return 操作结果
      */
     @PutMapping("/{id}/stage")
-    public Result updateStage(@PathVariable Integer id, @RequestBody Map<String, Integer> body) {
+    public Result updateStage(@PathVariable("id") Integer id, @RequestBody Map<String, Integer> body) {
         Integer stage = body.get("stage");
         log.info("收到修改商品状态请求，商品ID: {}, 目标状态: {}", id, stage);
         productService.updateStage(id, stage);
         log.info("商品状态修改请求处理完成");
+        return Result.success();
+    }
+
+    /**
+     * 修改商品图片接口（删除图片）
+     * 将商品图片设置为空字符串，即删除图片
+     * 只有商品所属商铺的持有者才能修改
+     *
+     * 前端调用示例：
+     * PUT /users/products/5/img
+     * Header: token=xxx
+     * Body: { "img": "" }
+     *
+     * @param id   商品ID，从URL路径中提取
+     * @param body 包含 img 字段的请求体
+     * @return 操作结果
+     */
+    @PutMapping("/{id}/img")
+    public Result updateImg(@PathVariable("id") Integer id, @RequestBody Map<String, String> body) {
+        String img = body.getOrDefault("img", "");
+        log.info("收到修改商品图片请求，商品ID: {}, 图片URL: {}", id, img);
+        productService.updateImg(id, img);
+        log.info("商品图片修改请求处理完成");
         return Result.success();
     }
 

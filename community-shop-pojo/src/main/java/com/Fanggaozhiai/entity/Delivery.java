@@ -25,7 +25,7 @@ public class Delivery {
     private Integer empId;
 
     /** 状态: 0未派送 1正在派送 2已送达 */
-    private Integer stage;
+    private Integer stage = 0;
 
     /** 送达时间 */
     private LocalDate arrTime;

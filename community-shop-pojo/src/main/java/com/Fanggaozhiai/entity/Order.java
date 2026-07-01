@@ -24,7 +24,7 @@ public class Order {
     /** 订单金额 */
     private double money;
 
-    /** 状态: 0未送达 1已送达完成 */
+    /** 状态: 0未送达 1已接单 2为已完成 */
     //默认0未送达
     private Integer stage = 0;
 

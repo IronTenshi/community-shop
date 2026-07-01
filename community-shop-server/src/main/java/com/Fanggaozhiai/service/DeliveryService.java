@@ -37,12 +37,12 @@ public interface DeliveryService {
     void complete(Integer ordId);
 
     /**
-     * 获取当前配送员的配送订单
-     * 从ThreadLocal获取当前登录员工ID，查询其已接单的配送记录
+     * 获取当前配送员的配送订单列表
+     * 从ThreadLocal获取当前登录员工ID，查询其所有已接单的配送记录及对应订单
      *
-     * @return 配送订单信息
+     * @return 配送订单信息列表
      */
-    Order getMyOrder();
+    List<DeliveryOrderReturn> getMyOrder();
 
     /**
      * 查询所有订单（管理员用）

@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { getShops } from '@/api/shop'
 
+const router = useRouter()
 const shops = ref([])
-const loading = ref(false)
 const searchName = ref('')
+const loading = ref(false)
 const toast = ref('')
 
 function showToast(msg) {
@@ -15,7 +17,7 @@ function showToast(msg) {
 async function loadShops() {
   loading.value = true
   try {
-    const res = await getShops({ name: searchName.value })
+    const res = await getShops({ name: searchName.value || undefined })
     shops.value = res.rows || []
   } catch (e) {
     showToast(e.message || '加载失败')
@@ -24,7 +26,13 @@ async function loadShops() {
   }
 }
 
-onMounted(loadShops)
+function goShop(shop) {
+  router.push(`/shops/${shop.id}`)
+}
+
+onMounted(() => {
+  loadShops()
+})
 </script>
 
 <template>
@@ -47,17 +55,12 @@ onMounted(loadShops)
     <div v-else-if="shops.length === 0" class="empty">暂无商铺</div>
 
     <div v-else class="shops-grid">
-      <div v-for="s in shops" :key="s.id" class="shop-card">
-        <div class="shop-img">
-          <img v-if="s.img" :src="s.img" :alt="s.name" />
-          <span v-else class="no-img">暂无图片</span>
-        </div>
+      <div v-for="s in shops" :key="s.id" class="shop-card" @click="goShop(s)">
         <div class="shop-body">
-          <h3>{{ s.name }}</h3>
-          <p class="desc">{{ s.describe }}</p>
+          <h3>{{ s.name }} <span class="arrow">→</span></h3>
           <div class="shop-meta">
-            <span>&#x1f4cd; {{ s.address }}</span>
-            <span>&#x1f4de; {{ s.phone }}</span>
+            <span>联系人：{{ s.person || '-' }}</span>
+            <span>电话：{{ s.phone || '-' }}</span>
           </div>
         </div>
       </div>
@@ -147,31 +150,21 @@ onMounted(loadShops)
   border: 1px solid #2a2a2a;
   overflow: hidden;
   transition: border-color 0.15s;
+  cursor: pointer;
 }
 
 .shop-card:hover {
-  border-color: #444;
+  border-color: #d4a853;
 }
 
-.shop-img {
-  width: 100%;
-  height: 160px;
-  background: #141414;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #2a2a2a;
+.arrow {
+  color: #666;
+  font-size: 14px;
+  transition: color 0.15s;
 }
 
-.shop-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.no-img {
-  color: #555;
-  font-size: 13px;
+.shop-card:hover .arrow {
+  color: #d4a853;
 }
 
 .shop-body {
@@ -181,18 +174,7 @@ onMounted(loadShops)
 .shop-body h3 {
   font-size: 16px;
   color: #e0e0e0;
-  margin-bottom: 6px;
-}
-
-.desc {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 12px;
-  line-height: 1.5;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  margin-bottom: 10px;
 }
 
 .shop-meta {

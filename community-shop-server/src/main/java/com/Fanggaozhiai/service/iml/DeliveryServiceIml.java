@@ -44,13 +44,21 @@ public class DeliveryServiceIml implements DeliveryService {
      * @param note  接单备注（可选）
      */
     @Override
+    @Transactional
     public void accept(Integer ordId, String note) {
+        // 检查订单是否已被接单
+        Delivery existing = deliveryMapper.selectByOrdId(ordId);
+        if (existing != null) {
+            throw new RuntimeException("该订单已被其他配送员接单");
+        }
         Integer usId = Context.getId();
         Delivery delivery = new Delivery();
         delivery.setEmpId(usId);
         delivery.setOrdId(ordId);
         delivery.setStage(1);
         delivery.setNote(note);
+        //修改订单状态
+        orderMapper.getById(ordId);
         deliveryMapper.addByDelivery(delivery);
     }
 
@@ -71,15 +79,19 @@ public class DeliveryServiceIml implements DeliveryService {
     }
 
     /**
-     * 获取当前配送员的配送订单
-     * 从ThreadLocal获取当前登录员工ID，查询其已接单的配送记录
+     * 获取当前配送员的配送订单列表
+     * 从ThreadLocal获取当前登录员工ID，查询其所有已接单的配送记录，并关联订单信息
      *
-     * @return 配送订单信息
+     * @return 配送订单信息列表
      */
     @Override
-    public Order getMyOrder() {
+    public List<DeliveryOrderReturn> getMyOrder() {
         Integer id = Context.getId();
-        return deliveryMapper.getByEmpId(id);
+        List<Delivery> deliveries = deliveryMapper.getByEmpId(id);
+        return deliveries.stream().map(d -> {
+            Order order = orderMapper.selectById(d.getOrdId());
+            return new DeliveryOrderReturn(d, order);
+        }).toList();
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.Fanggaozhiai.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class LoginReturn {
 
     /** 用户/员工ID */
@@ -21,4 +19,22 @@ public class LoginReturn {
 
     /** JWT认证令牌 */
     private String token;
+
+    /** 岗位（仅员工登录时返回）：0管理员 1配送员 */
+    private Integer job;
+
+    /** 用户/员工登录构造函数（不含job） */
+    public LoginReturn(Integer id, String username, String token) {
+        this.id = id;
+        this.username = username;
+        this.token = token;
+    }
+
+    /** 员工登录构造函数（含job） */
+    public LoginReturn(Integer id, String username, String token, Integer job) {
+        this.id = id;
+        this.username = username;
+        this.token = token;
+        this.job = job;
+    }
 }

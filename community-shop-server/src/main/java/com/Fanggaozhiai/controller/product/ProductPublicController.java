@@ -3,17 +3,16 @@ package com.Fanggaozhiai.controller.product;
 import com.Fanggaozhiai.dto.product.ProductPageParam;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 商品查询控制器
  * 提供商品分页查询接口（公开访问）
  * 基础路径: /productss
  */
+@Slf4j
 @RestController
 @RequestMapping("/productss")
 public class ProductPublicController {
@@ -33,5 +32,11 @@ public class ProductPublicController {
     @PostMapping
     public Result list(@RequestBody ProductPageParam productPageParam){
         return Result.success(productService.list(productPageParam));
+    }
+    //查询商铺中的商品
+    @PostMapping("/merchant/{merId}")
+    public Result selectByMerId(@PathVariable("merId") Integer merId){
+        log.info("查询商铺商品列表，商铺ID: {}", merId);
+        return Result.success(productService.selectByMerId(merId));
     }
 }

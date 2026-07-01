@@ -6,8 +6,8 @@ export function getProductsByShop(merId) {
 }
 
 /** 添加商品到指定商铺 */
-export function addProduct(merId, { name, describe, img, stage }) {
-  return api.post(`/users/products/${merId}`, { name, describe, img, stage })
+export function addProduct(merId, { name, describe, img, price, stage }) {
+  return api.post(`/users/products/${merId}`, { name, describe, img, price, stage })
 }
 
 /** 删除商品 */
@@ -20,11 +20,17 @@ export function updateProductStage(id, stage) {
   return api.put(`/users/products/${id}/stage`, { stage })
 }
 
+/** 删除商品图片 */
+export function deleteProductImage(id) {
+  return api.put(`/users/products/${id}/img`, { img: '' })
+}
+
 /** 上传商品图片 */
 export function uploadImage(file) {
   const formData = new FormData()
   formData.append('file', file)
+  const token = localStorage.getItem('token')
   return api.post('/users/products/upload', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: token && token !== 'null' && token !== 'undefined' ? { token } : {},
   })
 }

@@ -52,12 +52,14 @@ public class EmployeePermissionFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String path = request.getRequestURI().substring(request.getContextPath().length());
+
+        // 放行 OPTIONS 预检请求，让 Spring MVC CORS 配置处理
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         try {
-            // 放行 OPTIONS 预检请求，让 Spring MVC CORS 配置处理
-            if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-                filterChain.doFilter(request, response);
-                return;
-            }
             // 获取token
             String token = request.getHeader("token");
 
@@ -90,12 +92,15 @@ public class EmployeePermissionFilter implements Filter {
                     return;
                 }
             }
-
-            // 验证通过，放行请求
-            filterChain.doFilter(request, response);
         } catch (Exception e) {
             log.error("员工权限校验失败", e);
             setErrorResponse(response, 401);
+            return;
+        }
+
+        // 验证通过，放行请求（业务异常由Spring全局异常处理器处理）
+        try {
+            filterChain.doFilter(request, response);
         } finally {
             Context.clear();
         }

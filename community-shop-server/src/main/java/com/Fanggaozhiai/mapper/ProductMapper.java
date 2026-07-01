@@ -75,6 +75,16 @@ public interface ProductMapper {
     void updateStage(@Param("id") Integer id, @Param("stage") Integer stage);
 
     /**
+     * 更新商品图片
+     * 将图片URL设置为空字符串，即删除图片
+     *
+     * @param id  商品ID
+     * @param img 图片URL（传空字符串表示删除图片）
+     */
+    @Update("update product set img = #{img} where id = #{id}")
+    void updateImg(@Param("id") Integer id, @Param("img") String img);
+
+    /**
      * 根据商铺ID查询商品列表
      *
      * @param merId 商铺ID

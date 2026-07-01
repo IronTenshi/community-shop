@@ -47,6 +47,15 @@ public interface ProductService {
     void updateStage(Integer id, Integer stage);
 
     /**
+     * 修改商品图片（删除图片）
+     * 只有商品所属商铺的持有者才能修改
+     *
+     * @param id  商品ID
+     * @param img 图片URL（传空字符串表示删除图片）
+     */
+    void updateImg(Integer id, String img);
+
+    /**
      * 根据商铺ID查询商品列表
      *
      * @param merId 商铺ID

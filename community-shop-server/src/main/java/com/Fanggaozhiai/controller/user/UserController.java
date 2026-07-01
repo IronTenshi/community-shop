@@ -2,6 +2,7 @@ package com.Fanggaozhiai.controller.user;
 
 import com.Fanggaozhiai.context.Context;
 import com.Fanggaozhiai.dto.user.UserPut;
+import com.Fanggaozhiai.entity.User;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,20 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * 获取当前登录用户信息接口
+     * 从ThreadLocal上下文获取当前用户ID，查询并返回完整用户信息
+     *
+     * @return 当前登录用户的完整信息（包含 phone、address 等）
+     */
+    @GetMapping("/me")
+    public Result getCurrentUserInfo(){
+        Integer id = Context.getId();
+        log.info("获取当前用户信息: id={}", id);
+        User user = userService.getInfo(id);
+        return Result.success(user);
+    }
 
     /**
      * 修改用户信息接口

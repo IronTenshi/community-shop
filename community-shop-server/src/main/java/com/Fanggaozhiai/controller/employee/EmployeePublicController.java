@@ -53,7 +53,7 @@ public class EmployeePublicController {
      * @return 分页结果，包含总记录数和当前页员工列表
      */
     //分页查询员工（公开接口）
-    @GetMapping
+    @PostMapping
     public Result page(@RequestBody EmployeePageParam employeePageParam){
         log.info("分页查询员工: {}", employeePageParam);
         PageResult<Employee> pageResult = employeeService.list(employeePageParam);

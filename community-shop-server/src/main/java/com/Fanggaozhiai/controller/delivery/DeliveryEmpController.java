@@ -40,13 +40,18 @@ public class DeliveryEmpController {
      * @return 操作结果
      */
     @PostMapping("/{ordId}")
-    public Result accept(@PathVariable("ordId") Integer ordId, String note){
+    public Result accept(@PathVariable("ordId") Integer ordId, @RequestParam(required = false) String note){
         log.info("接单id:{} 备注：{}", ordId, note);
         if (ordId == null){
             return Result.error("参数异常");
         }
-        deliveryService.accept(ordId, note);
-        return Result.success();
+        try {
+            deliveryService.accept(ordId, note);
+            return Result.success();
+        } catch (RuntimeException e) {
+            log.warn("接单失败: {}", e.getMessage());
+            return Result.error(e.getMessage());
+        }
     }
 
     /**

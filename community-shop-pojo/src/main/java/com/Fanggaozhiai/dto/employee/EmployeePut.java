@@ -23,4 +23,10 @@ public class EmployeePut {
 
     /** 姓名 */
     private String name;
+
+    /** 岗位 */
+    private Integer job;
+
+    /** 状态 */
+    private Integer stage;
 }

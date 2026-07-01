@@ -1,13 +1,13 @@
 package com.Fanggaozhiai.mapper;
 
 import com.Fanggaozhiai.entity.Delivery;
-import com.Fanggaozhiai.entity.Order;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 配送数据访问层接口
@@ -22,7 +22,7 @@ public interface DeliveryMapper {
      *
      * @param delivery 配送实体，包含 ordId、empId、stage、note
      */
-    @Insert("insert into delivery(ord_id, emp_id, stage, note) values(#{ordId},#{empId},#{0},#{note})")
+    @Insert("insert into delivery(ord_id, emp_id, stage, note) values(#{ordId},#{empId},#{stage},#{note})")
     void addByDelivery(Delivery delivery);
 
     /**
@@ -36,14 +36,14 @@ public interface DeliveryMapper {
     void complete(LocalDate localDate, Integer ordId);
 
     /**
-     * 根据员工ID查询配送记录
-     * 查询当前配送员已接单的配送记录
+     * 根据员工ID查询配送记录列表
+     * 查询当前配送员已接单的所有配送记录
      *
      * @param empId 员工ID
-     * @return 配送对应的订单信息
+     * @return 配送记录列表
      */
     @Select("select * from delivery where emp_id = #{empId}")
-    Order getByEmpId(Integer empId);
+    List<Delivery> getByEmpId(Integer empId);
 
     /**
      * 根据订单ID查询配送记录

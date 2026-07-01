@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { getUserInfo } from '@/api/auth'
 
 function getValidToken() {
   const t = localStorage.getItem('token')
@@ -30,6 +31,21 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
   }
 
+  /** 刷新用户信息 */
+  async function refreshUserInfo() {
+    if (!token.value) return
+    const data = await getUserInfo()
+    // 更新本地存储
+    userInfo.value = {
+      ...userInfo.value,
+      id: data.id,
+      username: data.username,
+      phone: data.phone,
+      address: data.address,
+    }
+    localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+  }
+
   /** 退出登录 */
   function logout() {
     token.value = ''
@@ -38,5 +54,5 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem('userInfo')
   }
 
-  return { token, userInfo, isLoggedIn, username, setAuth, logout }
+  return { token, userInfo, isLoggedIn, username, setAuth, refreshUserInfo, logout }
 })

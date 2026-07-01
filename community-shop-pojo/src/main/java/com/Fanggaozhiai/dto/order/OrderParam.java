@@ -24,7 +24,7 @@ public class OrderParam {
     private Integer usId;
 
     /** 订单金额，后端计算，不信任前端传值 */
-    private double money;
+    private Double money;
 
     /** 收货地址 */
     private String reAddress;

@@ -21,6 +21,12 @@
             <if test="password != null">
                 password = #{password},
             </if>
+            <if test="job != null">
+                job = #{job},
+            </if>
+            <if test="stage != null">
+                stage = #{stage},
+            </if>
         </set>
         WHERE id = #{id}
     </update>

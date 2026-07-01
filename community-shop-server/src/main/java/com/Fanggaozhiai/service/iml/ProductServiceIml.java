@@ -166,6 +166,36 @@ public class ProductServiceIml implements ProductService {
     }
 
     /**
+     * 修改商品图片（删除图片）
+     * 权限校验：只有商品所属商铺的持有者才能修改
+     *
+     * @param id  商品ID
+     * @param img 图片URL（传空字符串表示删除图片）
+     */
+    @Override
+    public void updateImg(Integer id, String img) {
+        Integer currentUserId = Context.getId();
+        log.info("当前登录用户ID: {}, 修改商品ID: {} 的图片", currentUserId, id);
+
+        Product product = productMapper.selectById(id);
+        if (product == null) {
+            throw new RuntimeException("商品不存在");
+        }
+
+        Integer shopOwnerId = shopMapper.selectById(product.getMerId());
+        if (shopOwnerId == null) {
+            throw new RuntimeException("商铺不存在");
+        }
+
+        if (!currentUserId.equals(shopOwnerId)) {
+            throw new RuntimeException("无权限：您不是该商铺的持有者，无法修改商品图片");
+        }
+
+        productMapper.updateImg(id, img);
+        log.info("商品图片修改成功，商品ID: {}", id);
+    }
+
+    /**
      * 根据商铺ID查询商品列表
      *
      * @param merId 商铺ID

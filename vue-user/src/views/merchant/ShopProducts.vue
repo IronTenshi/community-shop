@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { addProduct, deleteProduct, updateProductStage, uploadImage, getProductsByShop } from '@/api/product-manage'
+import { addProduct, deleteProduct, updateProductStage, deleteProductImage, uploadImage, getProductsByShop } from '@/api/product-manage'
 import { getMyShops } from '@/api/shop-manage'
 
 const route = useRoute()
@@ -16,6 +16,7 @@ const form = reactive({
   name: '',
   describe: '',
   img: '',
+  price: '',
   stage: 0,
 })
 const uploading = ref(false)
@@ -65,6 +66,7 @@ function openAdd() {
   form.name = ''
   form.describe = ''
   form.img = ''
+  form.price = ''
   form.stage = 0
   showModal.value = true
 }
@@ -106,6 +108,17 @@ async function toggleStage(product) {
   }
 }
 
+async function handleDeleteImage(product) {
+  if (!confirm('确定删除该商品的图片吗？')) return
+  try {
+    await deleteProductImage(product.id)
+    product.img = ''
+    showToast('图片已删除')
+  } catch (e) {
+    showToast(e.message || '操作失败')
+  }
+}
+
 onMounted(() => {
   loadShopInfo()
   loadProducts()
@@ -131,7 +144,8 @@ onMounted(() => {
     <div v-else class="product-grid">
       <div v-for="product in products" :key="product.id" class="product-card">
         <div class="product-img">
-          <img :src="product.img" :alt="product.name" />
+          <img v-if="product.img" :src="product.img" :alt="product.name" />
+          <div v-else class="no-image">暂无图片</div>
         </div>
         <div class="product-info">
           <h3>{{ product.name }}</h3>
@@ -148,6 +162,7 @@ onMounted(() => {
           >
             {{ product.stage === 0 ? '设为无货' : '设为有货' }}
           </button>
+          <button v-if="product.img" class="btn-danger" @click="handleDeleteImage(product)">删图</button>
           <button class="btn-danger" @click="handleDelete(product)">删除</button>
         </div>
       </div>
@@ -171,6 +186,10 @@ onMounted(() => {
           <div v-if="form.img" class="preview">
             <img :src="form.img" alt="预览" />
           </div>
+        </div>
+        <div class="form-group">
+          <label>商品价格</label>
+          <input v-model="form.price" type="number" step="0.01" placeholder="输入商品价格" />
         </div>
         <div class="form-group">
           <label>商品状态</label>
@@ -259,6 +278,17 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.product-img .no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #141414;
+  color: #666;
+  font-size: 14px;
 }
 
 .product-info {

@@ -64,7 +64,7 @@ public interface OrderMapper {
      *
      * @param id 订单ID
      */
-    @Update("update `order` set stage = 1 where id = #{id}")
+    @Update("update `order` set stage = 2 where id = #{id}")
     void complete(Integer id);
 
     /**
@@ -74,4 +74,13 @@ public interface OrderMapper {
      */
     @Select("select * from `order`")
     List<Order> listAll();
+
+    /**
+     * 根据订单ID查询订单（管理员用）
+     *
+     * @param ordId 订单ID
+     * @return 订单实体
+     */
+    @Update("update `order` set stage = 1 where id = #{ordId}")
+    void getById(Integer ordId);
 }
