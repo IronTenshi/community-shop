@@ -74,7 +74,7 @@ public class UserPublicController {
     //查询返回分页
     //输入页码,和名称,返回分页数据
     //页数默认1 页大小默认10 输入 username 模糊查询
-    @GetMapping
+    @PostMapping
     public Result page(@RequestBody UserPageParam userPageParam){
         log.info("分页查询: {}", userPageParam);
         //返回分页数据

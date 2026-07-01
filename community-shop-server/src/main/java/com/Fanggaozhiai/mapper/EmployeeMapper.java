@@ -4,10 +4,7 @@ import com.Fanggaozhiai.dto.employee.EmployeeLogin;
 import com.Fanggaozhiai.dto.employee.EmployeePageParam;
 import com.Fanggaozhiai.dto.employee.EmployeePut;
 import com.Fanggaozhiai.entity.Employee;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -71,4 +68,12 @@ public interface EmployeeMapper {
      */
     @Delete("DELETE FROM employee WHERE id = #{id}")
     void deleteById(Integer id);
+
+
+    @Update("UPDATE employee SET stage = 1 WHERE id = #{usId}")
+    void getById(Integer usId);
+
+
+    @Update("UPDATE employee SET stage = 0 WHERE id = #{id}")
+    void completeById(Integer id);
 }

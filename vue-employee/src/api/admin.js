@@ -25,6 +25,16 @@ export function listEmployees(params) {
   return api.post('/emp', params)
 }
 
+/** 分页查询用户列表 */
+export function listUsers(params) {
+  return api.post('/user', params)
+}
+
+/** 查询用户详情 */
+export function getUserDetail(id) {
+  return api.get(`/user/${id}`)
+}
+
 /** 查看所有订单 */
 export function getAllOrders() {
   return api.get('/delivery/admin/list')

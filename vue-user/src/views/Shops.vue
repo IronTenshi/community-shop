@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { getShops } from '@/api/shop'
 
@@ -8,6 +8,11 @@ const shops = ref([])
 const searchName = ref('')
 const loading = ref(false)
 const toast = ref('')
+const page = ref(1)
+const pageSize = ref(12)
+const total = ref(0)
+
+const totalPages = computed(() => Math.max(1, Math.ceil(total.value / pageSize.value)))
 
 function showToast(msg) {
   toast.value = msg
@@ -17,13 +22,25 @@ function showToast(msg) {
 async function loadShops() {
   loading.value = true
   try {
-    const res = await getShops({ name: searchName.value || undefined })
+    const res = await getShops({ page: page.value, pageSize: pageSize.value, name: searchName.value || undefined })
     shops.value = res.rows || []
+    total.value = res.total || 0
   } catch (e) {
     showToast(e.message || '加载失败')
   } finally {
     loading.value = false
   }
+}
+
+function goPage(p) {
+  if (p < 1 || p > totalPages.value) return
+  page.value = p
+  loadShops()
+}
+
+function search() {
+  page.value = 1
+  loadShops()
 }
 
 function goShop(shop) {
@@ -42,10 +59,10 @@ onMounted(() => {
       <div class="search-bar">
         <input
           v-model="searchName"
-          @keyup.enter="loadShops"
+          @keyup.enter="search"
           placeholder="搜索商铺名称..."
         />
-        <button class="btn" @click="loadShops" :disabled="loading">
+        <button class="btn" @click="search" :disabled="loading">
           {{ loading ? '搜索中' : '搜索' }}
         </button>
       </div>
@@ -64,6 +81,13 @@ onMounted(() => {
           </div>
         </div>
       </div>
+    </div>
+
+    <div v-if="total > 0" class="pagination">
+      <span class="page-info">共 {{ total }} 条</span>
+      <button class="page-btn" :disabled="page <= 1" @click="goPage(page - 1)">上一页</button>
+      <span class="page-num">{{ page }} / {{ totalPages }}</span>
+      <button class="page-btn" :disabled="page >= totalPages" @click="goPage(page + 1)">下一页</button>
     </div>
 
     <div v-if="toast" class="toast">{{ toast }}</div>
@@ -196,5 +220,48 @@ onMounted(() => {
   color: #d4a853;
   font-size: 13px;
   z-index: 999;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px 0;
+}
+
+.page-info {
+  font-size: 12px;
+  color: #666;
+}
+
+.page-num {
+  font-size: 13px;
+  color: #aaa;
+  min-width: 60px;
+  text-align: center;
+}
+
+.page-btn {
+  padding: 6px 14px;
+  background: transparent;
+  color: #888;
+  border: 1px solid #333;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.15s;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: #d4a853;
+  color: #d4a853;
+}
+
+.page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 </style>

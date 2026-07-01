@@ -11,7 +11,8 @@ const menuItems = [
   { path: '/delivery/my', label: '我的配送', icon: '🚚', roles: [1] },
   { path: '/admin/orders', label: '全部订单', icon: '📊', roles: [0] },
   { path: '/admin/employees', label: '员工管理', icon: '👥', roles: [0] },
-  { path: '/profile', label: '个人中心', icon: '👤', roles: [0, 1] },
+  { path: '/admin/users', label: '用户管理', icon: '👤', roles: [0] },
+  { path: '/profile', label: '个人中心', icon: '⚙', roles: [0, 1] },
 ]
 
 function filteredMenu() {

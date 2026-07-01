@@ -1,0 +1,279 @@
+2026-07-02 02:09:36.907 [main] INFO  com.Fanggaozhiai.ShopApplication - Starting ShopApplication using Java 25 with PID 980 (E:\vibe\community-shop\community-shop-server\target\classes started by 23561 in E:\vibe\community-shop)
+2026-07-02 02:09:36.910 [main] INFO  com.Fanggaozhiai.ShopApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-02 02:09:37.042 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.0.1.Final
+2026-07-02 02:09:37.731 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8090"]
+2026-07-02 02:09:37.733 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-02 02:09:37.734 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-07-02 02:09:37.809 [main] INFO  c.F.filter.UserPermissionFilter - 初始化用户权限过滤器
+2026-07-02 02:09:37.924 [main] INFO  c.F.filter.EmployeePermissionFilter - 初始化员工权限过滤器
+2026-07-02 02:09:38.063 [main] INFO  com.Fanggaozhiai.utils.JwtUtil - JwtUtil初始化完成, userSecret=已加载, expire=3600000
+2026-07-02 02:09:38.300 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8090"]
+2026-07-02 02:09:38.325 [main] INFO  com.Fanggaozhiai.ShopApplication - Started ShopApplication in 1.745 seconds (process running for 2.327)
+2026-07-02 02:09:55.250 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02 02:09:55.352 [http-nio-8090-exec-1] INFO  c.F.c.e.EmployeePublicController - 员工登录: EmployeeLogin(username=fanggaozhiai, password=123456)
+2026-07-02 02:09:55.368 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-02 02:09:55.514 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e62e4a3
+2026-07-02 02:09:55.516 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-02 02:09:55.738 [http-nio-8090-exec-1] INFO  c.F.c.e.EmployeePublicController - 登录成功: LoginReturn(id=1, username=fanggaozhiai, token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmYW5nZ2FvemhpYWkiLCJleHAiOjE3ODI5MzI5OTV9.xjqSaQXwbiyWrortfkAuIVCSw46HdfS4MWHyKbg-lMY, job=0)
+2026-07-02 02:09:55.793 [http-nio-8090-exec-3] INFO  c.F.filter.EmployeePermissionFilter - 进入员工权限过滤器
+2026-07-02 02:09:55.832 [http-nio-8090-exec-3] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:09:55.834 [http-nio-8090-exec-3] INFO  c.F.c.delivery.DeliveryEmpController - 获得空闲订单列表
+2026-07-02 02:09:58.674 [http-nio-8090-exec-2] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:09:58.681 [http-nio-8090-exec-4] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:09:58.683 [http-nio-8090-exec-4] ERROR c.F.filter.UserPermissionFilter - 用户权限校验失败 - token解析异常: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827)
+	at com.Fanggaozhiai.utils.JwtUtil.parseTokenUser(JwtUtil.java:94)
+	at com.Fanggaozhiai.filter.UserPermissionFilter.doFilter(UserPermissionFilter.java:63)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-07-02 02:10:00.177 [http-nio-8090-exec-5] INFO  c.F.c.e.EmployeePublicController - 员工登录: EmployeeLogin(username=fanggaozhiai, password=123456)
+2026-07-02 02:10:00.181 [http-nio-8090-exec-5] INFO  c.F.c.e.EmployeePublicController - 登录成功: LoginReturn(id=1, username=fanggaozhiai, token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmYW5nZ2FvemhpYWkiLCJleHAiOjE3ODI5MzMwMDB9.E5JXqMPank-d11vDRIkiZpRpQQI4hNENppa4FoWwpUA, job=0)
+2026-07-02 02:10:00.214 [http-nio-8090-exec-6] INFO  c.F.filter.EmployeePermissionFilter - 进入员工权限过滤器
+2026-07-02 02:10:00.217 [http-nio-8090-exec-6] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:10:00.218 [http-nio-8090-exec-6] INFO  c.F.c.delivery.DeliveryEmpController - 获得空闲订单列表
+2026-07-02 02:10:01.142 [http-nio-8090-exec-7] INFO  c.F.c.e.EmployeePublicController - 分页查询员工: EmployeePageParam(page=1, pageSize=100, name=null)
+2026-07-02 02:10:08.996 [http-nio-8090-exec-8] INFO  c.F.filter.EmployeePermissionFilter - 进入员工权限过滤器
+2026-07-02 02:10:08.999 [http-nio-8090-exec-8] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:10:09.001 [http-nio-8090-exec-8] INFO  c.F.c.d.DeliveryAdminController - 获得所有订单
+2026-07-02 02:10:10.750 [http-nio-8090-exec-9] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:10:10.750 [http-nio-8090-exec-9] ERROR c.F.filter.UserPermissionFilter - 用户权限校验失败 - token解析异常: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827)
+	at com.Fanggaozhiai.utils.JwtUtil.parseTokenUser(JwtUtil.java:94)
+	at com.Fanggaozhiai.filter.UserPermissionFilter.doFilter(UserPermissionFilter.java:63)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-07-02 02:10:15.205 [http-nio-8090-exec-10] INFO  c.F.c.e.EmployeePublicController - 员工登录: EmployeeLogin(username=fanggaozhiai, password=123456)
+2026-07-02 02:10:15.206 [http-nio-8090-exec-10] INFO  c.F.c.e.EmployeePublicController - 登录成功: LoginReturn(id=1, username=fanggaozhiai, token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmYW5nZ2FvemhpYWkiLCJleHAiOjE3ODI5MzMwMTV9.qfzkMcIz-sZjoLqSdx8L-MQpRwTifjTVQ4KfVCj2CdE, job=0)
+2026-07-02 02:10:15.247 [http-nio-8090-exec-1] INFO  c.F.filter.EmployeePermissionFilter - 进入员工权限过滤器
+2026-07-02 02:10:15.250 [http-nio-8090-exec-1] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:10:15.251 [http-nio-8090-exec-1] INFO  c.F.c.delivery.DeliveryEmpController - 获得空闲订单列表
+2026-07-02 02:10:19.526 [http-nio-8090-exec-3] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:10:19.528 [http-nio-8090-exec-3] ERROR c.F.filter.UserPermissionFilter - 用户权限校验失败 - token解析异常: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827)
+	at com.Fanggaozhiai.utils.JwtUtil.parseTokenUser(JwtUtil.java:94)
+	at com.Fanggaozhiai.filter.UserPermissionFilter.doFilter(UserPermissionFilter.java:63)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-07-02 02:10:39.878 [http-nio-8090-exec-2] INFO  c.F.c.e.EmployeePublicController - 员工登录: EmployeeLogin(username=fanggaozhiai, password=123456)
+2026-07-02 02:10:39.881 [http-nio-8090-exec-2] INFO  c.F.c.e.EmployeePublicController - 登录成功: LoginReturn(id=1, username=fanggaozhiai, token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmYW5nZ2FvemhpYWkiLCJleHAiOjE3ODI5MzMwMzl9.7yhHp_rrADJPJLzUJQr9LdzcvJQlmQNu4sU4D0NWl3M, job=0)
+2026-07-02 02:10:39.920 [http-nio-8090-exec-4] INFO  c.F.filter.EmployeePermissionFilter - 进入员工权限过滤器
+2026-07-02 02:10:39.923 [http-nio-8090-exec-4] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:10:39.924 [http-nio-8090-exec-4] INFO  c.F.c.delivery.DeliveryEmpController - 获得空闲订单列表
+2026-07-02 02:10:48.092 [http-nio-8090-exec-5] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:10:48.092 [http-nio-8090-exec-5] ERROR c.F.filter.UserPermissionFilter - 用户权限校验失败 - token解析异常: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+io.jsonwebtoken.security.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+	at io.jsonwebtoken.impl.DefaultJwtParser.verifySignature(DefaultJwtParser.java:340)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:576)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:827)
+	at com.Fanggaozhiai.utils.JwtUtil.parseTokenUser(JwtUtil.java:94)
+	at com.Fanggaozhiai.filter.UserPermissionFilter.doFilter(UserPermissionFilter.java:63)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-07-02 02:14:06.042 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-02 02:14:06.046 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-02 02:14:06.048 [SpringApplicationShutdownHook] INFO  c.F.filter.UserPermissionFilter - 销毁用户权限过滤器
+2026-07-02 02:14:06.048 [SpringApplicationShutdownHook] INFO  c.F.filter.EmployeePermissionFilter - 销毁员工权限过滤器
+2026-07-02 02:21:46.497 [main] INFO  com.Fanggaozhiai.ShopApplication - Starting ShopApplication using Java 25 with PID 34064 (E:\vibe\community-shop\community-shop-server\target\classes started by 23561 in E:\vibe\community-shop)
+2026-07-02 02:21:46.500 [main] INFO  com.Fanggaozhiai.ShopApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-02 02:21:46.617 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.0.1.Final
+2026-07-02 02:21:47.266 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8090"]
+2026-07-02 02:21:47.268 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-02 02:21:47.268 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-07-02 02:21:47.453 [main] INFO  c.F.filter.UserPermissionFilter - 初始化用户权限过滤器
+2026-07-02 02:21:47.454 [main] INFO  c.F.filter.EmployeePermissionFilter - 初始化员工权限过滤器
+2026-07-02 02:21:47.592 [main] INFO  com.Fanggaozhiai.utils.JwtUtil - JwtUtil初始化完成, userSecret=已加载, expire=3600000
+2026-07-02 02:21:47.800 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8090"]
+2026-07-02 02:21:47.826 [main] INFO  com.Fanggaozhiai.ShopApplication - Started ShopApplication in 1.635 seconds (process running for 2.162)
+2026-07-02 02:21:50.757 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-02 02:21:50.849 [http-nio-8090-exec-1] INFO  c.F.c.e.EmployeePublicController - 员工登录: EmployeeLogin(username=fanggaozhiai, password=123456)
+2026-07-02 02:21:50.867 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-02 02:21:51.035 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ae3964e
+2026-07-02 02:21:51.037 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-02 02:21:51.265 [http-nio-8090-exec-1] INFO  c.F.c.e.EmployeePublicController - 登录成功: LoginReturn(id=1, username=fanggaozhiai, token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmYW5nZ2FvemhpYWkiLCJleHAiOjE3ODI5MzM3MTF9.ArtHSjXjreYjiWKKRrvNzi9fIp7jCXmD8tam9j_coN0, job=0)
+2026-07-02 02:21:51.329 [http-nio-8090-exec-2] INFO  c.F.filter.EmployeePermissionFilter - 进入员工权限过滤器
+2026-07-02 02:21:51.374 [http-nio-8090-exec-2] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:21:51.376 [http-nio-8090-exec-2] INFO  c.F.c.delivery.DeliveryEmpController - 获得空闲订单列表
+2026-07-02 02:21:52.671 [http-nio-8090-exec-10] INFO  c.F.c.e.EmployeePublicController - 分页查询员工: EmployeePageParam(page=1, pageSize=10, name=null)
+2026-07-02 02:21:54.703 [http-nio-8090-exec-5] INFO  c.F.c.e.EmployeePublicController - 分页查询员工: EmployeePageParam(page=2, pageSize=10, name=null)
+2026-07-02 02:21:57.200 [http-nio-8090-exec-8] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:21:57.202 [http-nio-8090-exec-8] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:21:57.204 [http-nio-8090-exec-8] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:21:57.204 [http-nio-8090-exec-8] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:21:57.207 [http-nio-8090-exec-8] INFO  c.F.c.user.UserPublicController - 分页查询: UserPageParam(page=1, pageSize=10, username=null)
+2026-07-02 02:22:25.621 [http-nio-8090-exec-6] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:22:25.622 [http-nio-8090-exec-6] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:22:25.624 [http-nio-8090-exec-6] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:22:25.624 [http-nio-8090-exec-6] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:22:25.625 [http-nio-8090-exec-6] INFO  c.F.c.user.UserPublicController - 分页查询: UserPageParam(page=1, pageSize=10, username=fang)
+2026-07-02 02:22:35.297 [http-nio-8090-exec-3] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:22:35.300 [http-nio-8090-exec-3] INFO  c.F.c.user.UserPublicController - 用户登录: UserLogin(username=fanggao, password=123456)
+2026-07-02 02:22:35.304 [http-nio-8090-exec-3] INFO  c.F.c.user.UserPublicController - 登录成功: LoginReturn(id=1, username=fanggao, token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmYW5nZ2FvIiwiZXhwIjoxNzgyOTMzNzU1fQ.-9ONzp5LtJvTT7tWPOeL5PkBbT5G3qh1VSUB_fwwqIo, job=null)
+2026-07-02 02:22:37.219 [http-nio-8090-exec-7] INFO  c.F.c.shop.ShopPublicController - 查询商铺信息
+2026-07-02 02:23:54.239 [http-nio-8090-exec-1] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:23:54.239 [http-nio-8090-exec-1] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:23:54.241 [http-nio-8090-exec-1] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:23:54.242 [http-nio-8090-exec-1] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:23:54.243 [http-nio-8090-exec-1] INFO  c.F.c.user.UserPublicController - 分页查询: UserPageParam(page=1, pageSize=10, username=null)
+2026-07-02 02:24:26.016 [http-nio-8090-exec-2] INFO  c.F.c.e.EmployeePublicController - 员工登录: EmployeeLogin(username=fanggaozhiai, password=123456)
+2026-07-02 02:24:26.020 [http-nio-8090-exec-2] INFO  c.F.c.e.EmployeePublicController - 登录成功: LoginReturn(id=1, username=fanggaozhiai, token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmYW5nZ2FvemhpYWkiLCJleHAiOjE3ODI5MzM4NjZ9.CFDLCx7CmmN7PmCdsHxIgWOLE5_5yPHIQRIIOJ07Q_4, job=0)
+2026-07-02 02:24:26.042 [http-nio-8090-exec-10] INFO  c.F.filter.EmployeePermissionFilter - 进入员工权限过滤器
+2026-07-02 02:24:26.045 [http-nio-8090-exec-10] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:24:26.046 [http-nio-8090-exec-10] INFO  c.F.c.delivery.DeliveryEmpController - 获得空闲订单列表
+2026-07-02 02:24:26.810 [http-nio-8090-exec-5] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:24:26.811 [http-nio-8090-exec-5] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:24:26.813 [http-nio-8090-exec-5] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:24:26.814 [http-nio-8090-exec-5] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:24:26.814 [http-nio-8090-exec-5] INFO  c.F.c.user.UserPublicController - 分页查询: UserPageParam(page=1, pageSize=10, username=null)
+2026-07-02 02:25:25.258 [http-nio-8090-exec-8] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:25:25.260 [http-nio-8090-exec-8] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:25:25.262 [http-nio-8090-exec-8] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:25:25.262 [http-nio-8090-exec-8] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:25:25.264 [http-nio-8090-exec-8] INFO  c.F.c.user.UserPublicController - 分页查询: UserPageParam(page=1, pageSize=10, username=null)
+2026-07-02 02:25:33.267 [http-nio-8090-exec-6] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:25:33.268 [http-nio-8090-exec-6] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:25:33.270 [http-nio-8090-exec-6] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:25:33.271 [http-nio-8090-exec-6] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:25:33.272 [http-nio-8090-exec-6] INFO  c.F.c.user.UserPublicController - 分页查询: UserPageParam(page=1, pageSize=10, username=null)
+2026-07-02 02:26:11.190 [http-nio-8090-exec-3] INFO  c.F.c.e.EmployeePublicController - 分页查询员工: EmployeePageParam(page=1, pageSize=10, name=null)
+2026-07-02 02:26:11.843 [http-nio-8090-exec-9] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:26:11.843 [http-nio-8090-exec-9] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:26:11.846 [http-nio-8090-exec-9] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:26:11.847 [http-nio-8090-exec-9] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:26:11.848 [http-nio-8090-exec-9] INFO  c.F.c.user.UserPublicController - 分页查询: UserPageParam(page=1, pageSize=10, username=null)
+2026-07-02 02:26:28.951 [http-nio-8090-exec-7] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:26:28.957 [http-nio-8090-exec-4] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:26:28.958 [http-nio-8090-exec-4] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:26:28.961 [http-nio-8090-exec-4] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:26:28.961 [http-nio-8090-exec-4] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:26:28.964 [http-nio-8090-exec-4] INFO  c.F.c.user.UserPublicController - 查询用户信息: 2
+2026-07-02 02:26:30.273 [http-nio-8090-exec-1] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:26:30.276 [http-nio-8090-exec-2] INFO  c.F.filter.UserPermissionFilter - 进入用户权限过滤器
+2026-07-02 02:26:30.278 [http-nio-8090-exec-2] INFO  c.F.filter.UserPermissionFilter - 用户token解析失败，尝试管理员token: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-07-02 02:26:30.281 [http-nio-8090-exec-2] INFO  c.F.filter.UserPermissionFilter - 管理员token验证通过，管理员ID: 1
+2026-07-02 02:26:30.281 [http-nio-8090-exec-2] INFO  com.Fanggaozhiai.context.Context - 设置用户id: 1
+2026-07-02 02:26:30.282 [http-nio-8090-exec-2] INFO  c.F.c.user.UserPublicController - 查询用户信息: 1
+2026-07-02 02:27:04.893 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-02 02:27:04.896 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-02 02:27:04.898 [SpringApplicationShutdownHook] INFO  c.F.filter.UserPermissionFilter - 销毁用户权限过滤器
+2026-07-02 02:27:04.898 [SpringApplicationShutdownHook] INFO  c.F.filter.EmployeePermissionFilter - 销毁员工权限过滤器

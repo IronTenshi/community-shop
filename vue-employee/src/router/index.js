@@ -40,6 +40,11 @@ const routes = [
         name: 'admin-employees',
         component: () => import('@/views/admin/Employees.vue'),
       },
+      {
+        path: 'admin/users',
+        name: 'admin-users',
+        component: () => import('@/views/admin/Users.vue'),
+      },
     ],
   },
 ]

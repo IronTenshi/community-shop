@@ -4,6 +4,7 @@ import com.Fanggaozhiai.context.Context;
 import com.Fanggaozhiai.entity.Delivery;
 import com.Fanggaozhiai.entity.Order;
 import com.Fanggaozhiai.mapper.DeliveryMapper;
+import com.Fanggaozhiai.mapper.EmployeeMapper;
 import com.Fanggaozhiai.mapper.OrderMapper;
 import com.Fanggaozhiai.service.DeliveryService;
 import com.Fanggaozhiai.vo.DeliveryOrderReturn;
@@ -24,6 +25,8 @@ public class DeliveryServiceIml implements DeliveryService {
     private DeliveryMapper deliveryMapper;
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     /**
      * 获取空闲订单列表
@@ -57,6 +60,8 @@ public class DeliveryServiceIml implements DeliveryService {
         delivery.setOrdId(ordId);
         delivery.setStage(1);
         delivery.setNote(note);
+        //修改员工状态为1
+        employeeMapper.getById(usId);
         //修改订单状态
         orderMapper.getById(ordId);
         deliveryMapper.addByDelivery(delivery);
@@ -74,6 +79,9 @@ public class DeliveryServiceIml implements DeliveryService {
     @Transactional
     public void complete(Integer ordId) {
         LocalDate d = LocalDate.now();
+        Integer id = Context.getId();
+        //修改员工状态为0
+        employeeMapper.completeById(id);
         deliveryMapper.complete(d, ordId);
         orderMapper.complete(ordId);
     }
