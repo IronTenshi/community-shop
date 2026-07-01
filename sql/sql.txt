@@ -1,0 +1,94 @@
+#create database
+CREATE DATABASE IF NOT EXISTS com_shop
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_general_ci;
+
+USE com_shop;
+
+#create employee
+CREATE TABLE IF NOT EXISTS employee (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY COMMENT '员工ID',
+    name VARCHAR(20) NOT NULL COMMENT '姓名',
+    stage INT UNSIGNED DEFAULT 0 COMMENT '状态: 0空闲 1配送中',
+    entry_time DATE COMMENT '入职日期',
+    username VARCHAR(30) NOT NULL UNIQUE COMMENT '登录账号',
+    password VARCHAR(30) NOT NULL COMMENT '登录密码',
+    job INT UNSIGNED DEFAULT 0 COMMENT '岗位: 0管理员1 配送员'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='员工表';
+
+#create user
+CREATE TABLE user (
+    id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY COMMENT '主键',
+    username    VARCHAR(255) NOT NULL COMMENT '用户名',
+    phone       VARCHAR(20)  COMMENT '手机号',
+    password    VARCHAR(255) NOT NULL COMMENT '密码',
+    address    VARCHAR(500) COMMENT '地址',
+    create_time DATE         COMMENT '创建时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+
+#create shop
+CREATE TABLE merchant (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键',
+    name VARCHAR(255) NOT NULL DEFAULT '' COMMENT '名称',
+    person VARCHAR(255) NOT NULL DEFAULT '' COMMENT '联系人',
+    phone VARCHAR(50) NOT NULL DEFAULT '' COMMENT '电话',
+    us_id INT UNSIGNED NOT NULL COMMENT '对应用户id'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商户表';
+
+-- 4. 商品表
+CREATE TABLE `product` (
+    `id`       INT          NOT NULL AUTO_INCREMENT COMMENT '商品ID',
+    `name`     VARCHAR(100) DEFAULT NULL            COMMENT '商品名称',
+    `describe` VARCHAR(500) DEFAULT NULL            COMMENT '商品描述',
+    `img`      VARCHAR(300) DEFAULT NULL            COMMENT '商品图片URL',
+    `stage`    TINYINT      DEFAULT 1               COMMENT '状态: 0有货 1无货',
+    `mer_id`   INT          NOT NULL                COMMENT '所属商铺ID',
+    PRIMARY KEY (`id`),
+    KEY `idx_mer_id` (`mer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品表';
+
+-- 添加商品价格
+alter table product add column price double not null comment '商品价格';
+
+-- 5. 订单表（order 是 MySQL 保留字，需用反引号）
+CREATE TABLE `order` (
+    `id`          INT          NOT NULL AUTO_INCREMENT COMMENT '订单ID',
+    `us_id`       INT          NOT NULL                COMMENT '下单用户ID',
+    `money`       double          DEFAULT NULL            COMMENT '订单金额（分）',
+    `stage`       TINYINT      DEFAULT 0               COMMENT '状态: 0未送达 1已送达',
+    `re_address`  VARCHAR(200) DEFAULT NULL            COMMENT '收货地址',
+    `create_time` DATE         DEFAULT NULL            COMMENT '创建时间',
+    `pay_time`    DATE         DEFAULT NULL            COMMENT '支付时间',
+    PRIMARY KEY (`id`),
+    KEY `idx_us_id` (`us_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
+
+-- 6. 订单明细表
+CREATE TABLE `order_item` (
+    `id`        INT NOT NULL AUTO_INCREMENT COMMENT '明细ID',
+    `ord_id`    INT NOT NULL                COMMENT '订单ID',
+    `pro_id`    INT NOT NULL                COMMENT '商品ID',
+    `num`       INT NOT NULL                COMMENT '商品数量',
+    `total`     INT DEFAULT NULL            COMMENT '商品总价（分）',
+    `per_money` INT DEFAULT NULL            COMMENT '商品单价（分）',
+    PRIMARY KEY (`id`),
+    KEY `idx_ord_id` (`ord_id`),
+    KEY `idx_pro_id` (`pro_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单明细表';
+
+alter table order_item modify column total double;
+alter table order_item modify column per_money double;
+
+-- 7. 配送表
+CREATE TABLE `delivery` (
+    `id`       INT          NOT NULL AUTO_INCREMENT COMMENT '配送ID',
+    `ord_id`   INT          NOT NULL                COMMENT '订单ID',
+    `emp_id`   INT          NOT NULL                COMMENT '配送员ID',
+    `stage`    TINYINT      DEFAULT 0               COMMENT '状态: 0未派送 1正在派送 2已送达',
+    `arr_time` DATE         DEFAULT NULL            COMMENT '送达时间',
+    `note`     VARCHAR(200) DEFAULT NULL            COMMENT '备注',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_ord_id` (`ord_id`),
+    KEY `idx_emp_id` (`emp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='配送表';

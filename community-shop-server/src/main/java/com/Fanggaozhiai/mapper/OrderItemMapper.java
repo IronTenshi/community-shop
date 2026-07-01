@@ -1,8 +1,10 @@
 package com.Fanggaozhiai.mapper;
 
 import com.Fanggaozhiai.entity.OrderItem;
+import jakarta.websocket.server.PathParam;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public interface OrderItemMapper {
      *
      * @param orderItems 订单明细列表
      */
-    void add(List<OrderItem> orderItems);
+    void add(@Param("orderItems") List<OrderItem> orderItems);
 
     /**
      * 根据订单ID删除所有明细

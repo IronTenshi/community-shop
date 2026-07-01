@@ -49,12 +49,29 @@ public interface OrderMapper {
     @Delete("delete from `order` where id = #{id}")
     void delete(Integer id);
 
+    /**
+     * 查询空闲订单（stage = 0）
+     * 供配送员查看可接单的订单列表
+     *
+     * @return 空闲订单列表
+     */
     @Select("select * from `order` where stage = 0")
     List<Order> listByStage();
 
-    @Update("update `order` set stage = 1 where id = #{id}" )
+    /**
+     * 完成订单
+     * 配送员送达后，将订单状态更新为已完成（stage = 1）
+     *
+     * @param id 订单ID
+     */
+    @Update("update `order` set stage = 1 where id = #{id}")
     void complete(Integer id);
 
+    /**
+     * 查询所有订单（管理员用）
+     *
+     * @return 所有订单列表
+     */
     @Select("select * from `order`")
     List<Order> listAll();
 }

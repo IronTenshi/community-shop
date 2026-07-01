@@ -4,7 +4,7 @@ import com.Fanggaozhiai.dto.product.ProductPageParam;
 import com.Fanggaozhiai.result.Result;
 import com.Fanggaozhiai.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +30,7 @@ public class ProductPublicController {
      */
     //查询所有商品信息
     //分页查询
-    @GetMapping
+    @PostMapping
     public Result list(@RequestBody ProductPageParam productPageParam){
         return Result.success(productService.list(productPageParam));
     }

@@ -32,6 +32,7 @@ public class UserPublicController {
      */
     //登录功能
     //输入username password
+    //return userLogin 需要判断是否为空，因为返回永远有值
     @PostMapping("/login")
     public Result login(@RequestBody UserLogin userLogin){
         log.info("用户登录: {}", userLogin);
@@ -40,7 +41,7 @@ public class UserPublicController {
             return Result.error("用户名或密码为空");
         }
         LoginReturn loginReturn = userService.login(userLogin);
-        if(loginReturn == null){
+        if(loginReturn == null || loginReturn.getToken() == null){
             return Result.error("登录失败");
         }
         log.info("登录成功: {}", loginReturn);

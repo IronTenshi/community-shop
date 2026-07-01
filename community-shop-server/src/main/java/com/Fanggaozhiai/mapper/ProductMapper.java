@@ -73,4 +73,13 @@ public interface ProductMapper {
      */
     @Update("update product set stage = #{stage} where id = #{id}")
     void updateStage(@Param("id") Integer id, @Param("stage") Integer stage);
+
+    /**
+     * 根据商铺ID查询商品列表
+     *
+     * @param merId 商铺ID
+     * @return 该商铺下的所有商品列表
+     */
+    @Select("SELECT * FROM product WHERE mer_id = #{merId}")
+    List<Product> selectByMerId(@Param("merId") Integer merId);
 }

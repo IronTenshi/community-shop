@@ -164,4 +164,15 @@ public class ProductServiceIml implements ProductService {
         productMapper.updateStage(id, stage);
         log.info("商品状态修改成功，商品ID: {}, 新状态: {}", id, stage == 0 ? "有货" : "无货");
     }
+
+    /**
+     * 根据商铺ID查询商品列表
+     *
+     * @param merId 商铺ID
+     * @return 该商铺下的所有商品列表
+     */
+    @Override
+    public List<Product> selectByMerId(Integer merId) {
+        return productMapper.selectByMerId(merId);
+    }
 }

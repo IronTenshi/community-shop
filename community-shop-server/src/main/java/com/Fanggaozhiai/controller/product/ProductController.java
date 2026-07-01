@@ -66,7 +66,7 @@ public class ProductController {
      * @return 操作结果，成功返回 success，失败返回 error（无权限或商铺不存在）
      */
     @PostMapping("/{merId}")
-    public Result add(@PathVariable Integer merId, @RequestBody Product product) {
+    public Result add(@PathVariable("merId") Integer merId, @RequestBody Product product) {
         log.info("收到添加商品请求，目标商铺ID: {}, 商品名称: {}", merId, product.getName());
         // 将URL路径中的商铺ID注入到商品对象中
         // 前端无需在请求体中传递 merId，由后端从URL自动提取，更加安全
@@ -154,5 +154,18 @@ public class ProductController {
         productService.updateStage(id, stage);
         log.info("商品状态修改请求处理完成");
         return Result.success();
+    }
+
+    /**
+     * 查询商铺商品列表接口
+     * 商户查看自己商铺下的所有商品
+     *
+     * @param merId 商铺ID
+     * @return 该商铺下的所有商品列表
+     */
+    @GetMapping("/merchant/{merId}")
+    public Result selectByMerId(@PathVariable("merId") Integer merId) {
+        log.info("查询商铺商品列表，商铺ID: {}", merId);
+        return Result.success(productService.selectByMerId(merId));
     }
 }
