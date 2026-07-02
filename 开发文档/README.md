@@ -432,3 +432,13 @@ CREATE TABLE `delivery` (
     KEY `idx_emp_id` (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='配送表';
 ```
+
+## 6.前端相关
+
+技术栈 ： vue axios pinia持久化 
+
+两个客户端 ： 用户视角 员工视角
+
+分别部署两个ngnix服务器
+
+大部分由ai审查和编写

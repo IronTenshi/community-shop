@@ -9,9 +9,11 @@ import com.Fanggaozhiai.mapper.OrderMapper;
 import com.Fanggaozhiai.service.DeliveryService;
 import com.Fanggaozhiai.vo.DeliveryOrderReturn;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class DeliveryServiceIml implements DeliveryService {
     private OrderMapper orderMapper;
     @Autowired
     private EmployeeMapper employeeMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      * 获取空闲订单列表
@@ -41,7 +45,9 @@ public class DeliveryServiceIml implements DeliveryService {
 
     /**
      * 接单
-     * 从ThreadLocal获取当前登录员工ID，创建配送记录（stage = 1 配送中）
+     * 使用Redis SETNX分布式锁防止并发接单：
+     * 多个配送员同时抢同一订单时，只有第一个成功SETNX的配送员能接单，其余直接返回失败
+     * 锁key为 delivery:lock:{ordId}，30秒自动过期防止死锁
      *
      * @param ordId 订单ID
      * @param note  接单备注（可选）
@@ -49,22 +55,39 @@ public class DeliveryServiceIml implements DeliveryService {
     @Override
     @Transactional
     public void accept(Integer ordId, String note) {
-        // 检查订单是否已被接单
-        Delivery existing = deliveryMapper.selectByOrdId(ordId);
-        if (existing != null) {
+        Integer empId = Context.getId();
+        String lockKey = "delivery:lock:" + ordId;
+
+        // SETNX：只有 key 不存在时才能设置成功，返回 true 表示抢到锁
+        Boolean locked = redisTemplate.opsForValue()
+                .setIfAbsent(lockKey, String.valueOf(empId), Duration.ofSeconds(30));
+
+        if (Boolean.FALSE.equals(locked)) {
             throw new RuntimeException("该订单已被其他配送员接单");
         }
-        Integer usId = Context.getId();
-        Delivery delivery = new Delivery();
-        delivery.setEmpId(usId);
-        delivery.setOrdId(ordId);
-        delivery.setStage(1);
-        delivery.setNote(note);
-        //修改员工状态为1
-        employeeMapper.getById(usId);
-        //修改订单状态
-        orderMapper.getById(ordId);
-        deliveryMapper.addByDelivery(delivery);
+
+        try {
+            // 二次检查数据库，防止锁过期后残留数据被误接
+            Delivery existing = deliveryMapper.selectByOrdId(ordId);
+            if (existing != null) {
+                throw new RuntimeException("该订单已被其他配送员接单");
+            }
+
+            Delivery delivery = new Delivery();
+            delivery.setEmpId(empId);
+            delivery.setOrdId(ordId);
+            delivery.setStage(1);
+            delivery.setNote(note);
+            //修改员工状态为1
+            employeeMapper.getById(empId);
+            //修改订单状态
+            orderMapper.getById(ordId);
+            deliveryMapper.addByDelivery(delivery);
+        } catch (Exception e) {
+            // 业务失败时释放锁，让其他配送员可以重试
+            redisTemplate.delete(lockKey);
+            throw e;
+        }
     }
 
     /**

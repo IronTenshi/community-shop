@@ -18,20 +18,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+/**
+ * 阿里云OSS文件上传工具类
+ * 负责将图片文件上传到阿里云OSS，并返回可访问的URL
+ * 使用环境变量 OSS_ACCESS_KEY_ID 和 OSS_ACCESS_KEY_SECRET 进行身份认证
+ */
 @Component
 public class AliyuOSSUtil {
     @Autowired
     private AliyuConfig aliyunOSSProperties;
-//    @Value("${aliyun.oss.endpoint}")
-//    private String endpoint;
-//    @Value("${aliyun.oss.bucketName}")
-//    private String bucketName;
-//    @Value("${aliyun.oss.region}")
-//    private String region;
 
-
-    //上传文件 file  返回阿里云地址
-    //用于存放图片和预览
+    /**
+     * 上传文件到阿里云OSS
+     * 文件按日期分目录存储（yyyy/MM/dd），文件名使用UUID防止冲突
+     *
+     * @param file             文件字节数组
+     * @param originalFilename 原始文件名（用于提取扩展名）
+     * @return 上传后的文件访问URL
+     * @throws ClientException OSS上传异常
+     */
     public String upload(byte[] file , String originalFilename) throws ClientException {
         //从环境中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
         EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();

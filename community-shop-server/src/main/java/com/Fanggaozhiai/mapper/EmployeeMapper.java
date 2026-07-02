@@ -70,10 +70,19 @@ public interface EmployeeMapper {
     void deleteById(Integer id);
 
 
+    /**
+     * 将员工状态设置为配送中（接单时调用）
+     *
+     * @param usId 员工ID
+     */
     @Update("UPDATE employee SET stage = 1 WHERE id = #{usId}")
     void getById(Integer usId);
 
-
+    /**
+     * 将员工状态设置为空闲（配送完成时调用）
+     *
+     * @param id 员工ID
+     */
     @Update("UPDATE employee SET stage = 0 WHERE id = #{id}")
     void completeById(Integer id);
 }
