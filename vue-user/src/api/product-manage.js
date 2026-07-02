@@ -25,12 +25,9 @@ export function deleteProductImage(id) {
   return api.put(`/users/products/${id}/img`, { img: '' })
 }
 
-/** 上传商品图片 */
+/** 上传商品图片（token 由拦截器自动附加，无需手动设置 headers） */
 export function uploadImage(file) {
   const formData = new FormData()
   formData.append('file', file)
-  const token = localStorage.getItem('token')
-  return api.post('/users/products/upload', formData, {
-    headers: token && token !== 'null' && token !== 'undefined' ? { token } : {},
-  })
+  return api.post('/users/products/upload', formData)
 }

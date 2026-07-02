@@ -12,7 +12,14 @@ export default defineConfig({
     }
   },
   server : {
-    port: 5172
+    port: 5172,
+    proxy: {
+      // 将 /admin、/delivery、/emp 等 API 请求转发到后端
+      '^/(admin|delivery|emp)': {
+        target: 'http://localhost:8090',
+        changeOrigin: true,
+      }
+    }
   },
-  base : '/employee'
+  base : '/employee/',
 })

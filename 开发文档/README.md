@@ -524,3 +524,53 @@ public void accept(Integer ordId, String note) {
 ```
 
 创建分布式锁解决ngnix分发多客户端的并发问题。
+
+## 7.接口文件
+
+见本目录中的 community-shop.apifox.json
+
+## 8.服务器部署
+
+#### 1.前端
+
+将 vue 工程项目使用  node.js 中的方法 npm run build 生成静态文件
+
+配置 ngnix 转发 保障跨域链接
+
+注意事项 ：vue工程中token的提取和存放 ， ngnix 转发的完全性和正确性
+
+#### 2.后端
+
+maven 打成 jar 包
+
+java 25 下载安装
+
+MySQL 部署安装
+
+redis 下载安装
+
+注意事项 ： 配置好所有数据库相关的密码用户名等
+
+#### 3.配置
+
+使用 **WinSW-x64.exe** 将 ngnix 和 jar 包设计为系统服务项目， 设置服务器自启动。
+
+# ***<u>注意：如果将后端设置为系统服务选项，那么 oss 存储的密钥 和 密文 要设置在系统中</u>***
+
+```cmd
+//新增系统环境变量
+setx ALIBABA_CLOUD_ACCESS_KEY_ID yourAccessKeyID /M
+setx ALIBABA_CLOUD_ACCESS_KEY_SECRET XXXXXXX /M
+//仅在本cmd窗口有效
+set OSS_ACCESS_KEY_ID=AccessKey ID
+set OSS_ACCESS_KEY_SECRET=AccessKey Secret
+//在全局有效
+setx OSS_ACCESS_KEY_ID "%OSS_ACCESS_KEY_ID%"
+setx OSS_ACCESS_KEY_SECRET "%OSS_ACCESS_KEY_SECRET%"
+//设置在系统服务中，必须要这么设置，否则读取不到
+setx OSS_ACCESS_KEY_ID "%OSS_ACCESS_KEY_ID%" /M
+setx OSS_ACCESS_KEY_SECRET "%OSS_ACCESS_KEY_SECRET%" /M
+```
+
+
+

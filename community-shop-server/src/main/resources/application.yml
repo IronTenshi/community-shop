@@ -1,6 +1,7 @@
 # 端口
 server:
   port: 8090
+  address: 0.0.0.0
 
 # 数据源 + 文件上传
 spring:
@@ -13,6 +14,7 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+
   redis:
     host: localhost
     port: 6379

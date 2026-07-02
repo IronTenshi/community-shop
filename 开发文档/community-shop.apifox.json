@@ -1,0 +1,3911 @@
+{
+  "apifoxProject": "1.0.0",
+  "$schema": {
+    "app": "apifox",
+    "type": "project",
+    "version": "1.2.0"
+  },
+  "info": {
+    "name": "community-shop",
+    "description": "",
+    "mockRule": {
+      "rules": [],
+      "enableSystemRule": true
+    }
+  },
+  "projectSetting": {
+    "id": "8449173",
+    "auth": {},
+    "securityScheme": {},
+    "gateway": [],
+    "language": "zh-CN",
+    "apiStatuses": [
+      "developing",
+      "testing",
+      "released",
+      "deprecated"
+    ],
+    "mockSettings": {},
+    "preProcessors": [],
+    "postProcessors": [],
+    "advancedSettings": {
+      "allowAutomationWriteAutomationCreatedSprintBranch": true,
+      "enableJsonc": false,
+      "enableBigint": false,
+      "responseValidate": true,
+      "enableTestScenarioSetting": false,
+      "enableYAPICompatScript": false,
+      "isDefaultUrlEncoding": 2,
+      "publishedDocUrlRules": {
+        "defaultRule": "RESOURCE_KEY_ONLY",
+        "resourceKeyStandard": "NEW"
+      }
+    },
+    "initialDisabledMockIds": [],
+    "servers": [
+      {
+        "id": "default",
+        "name": "默认服务",
+        "moduleId": 7932619
+      }
+    ],
+    "cloudMock": {
+      "enable": false,
+      "security": "free",
+      "tokenKey": "apifoxToken",
+      "isCreatedAutomaticallyByDefaultConfigFromAdmin": true
+    }
+  },
+  "apiCollection": [
+    {
+      "name": "根目录",
+      "id": 87787475,
+      "auth": {},
+      "securityScheme": {},
+      "parentId": 0,
+      "serverId": "",
+      "description": "",
+      "identityPattern": {
+        "httpApi": {
+          "type": "methodAndPath",
+          "bodyType": "",
+          "fields": []
+        }
+      },
+      "shareSettings": {},
+      "visibility": "SHARED",
+      "moduleId": 7932619,
+      "preProcessors": [
+        {
+          "id": "inheritProcessors",
+          "type": "inheritProcessors",
+          "data": {}
+        }
+      ],
+      "postProcessors": [
+        {
+          "id": "inheritProcessors",
+          "type": "inheritProcessors",
+          "data": {}
+        }
+      ],
+      "inheritPostProcessors": {},
+      "inheritPreProcessors": {},
+      "items": [
+        {
+          "name": "员工管理控制器（管理员专属）",
+          "id": 89963390,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "新增员工接口",
+              "api": {
+                "id": "481781178",
+                "method": "post",
+                "path": "/admin/emps",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "116974258",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/282767678",
+                    "description": "员工信息，包含 name(姓名)、username(登录账号)、password(密码)、job(岗位：0管理员 1配送员)、stage(状态：0空闲 1配送中)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "管理员创建新员工账号",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "查询员工详情接口",
+              "api": {
+                "id": "481781179",
+                "method": "get",
+                "path": "/admin/emps/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "员工ID，从URL路径中获取",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "102454900",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "员工详细信息"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "管理员根据员工ID查询员工详细信息",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "修改员工信息接口",
+              "api": {
+                "id": "481781180",
+                "method": "put",
+                "path": "/admin/emps",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "147948006",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/284115490",
+                    "description": "修改参数，包含 id(员工ID)、name(姓名)、username(账号)、password(密码)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "管理员修改指定员工的信息（姓名、账号、密码）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "删除员工接口",
+              "api": {
+                "id": "481781181",
+                "method": "delete",
+                "path": "/admin/emps/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "员工ID，从URL路径中获取",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "193056161",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "管理员根据员工ID删除员工账号",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "员工公开接口控制器",
+          "id": 89963391,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "员工登录接口",
+              "api": {
+                "id": "481781182",
+                "method": "post",
+                "path": "/emp/login",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "133193990",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "登录成功返回 LoginReturn 对象（包含 id、username、token），失败返回错误信息"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/284105069",
+                    "description": "登录参数，包含 username(用户名) 和 password(密码)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "根据用户名和密码进行身份验证，验证通过后返回JWT token",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "分页查询员工列表接口（公开）",
+              "api": {
+                "id": "481781183",
+                "method": "post",
+                "path": "/emp",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "141774008",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "分页结果，包含总记录数和当前页员工列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/283249170",
+                    "description": "分页查询参数，包含 page(页码，默认1)、pageSize(每页数量，默认10)、name(姓名，可选)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "无需登录即可查询员工信息，支持按姓名模糊查询",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "配送员接口控制器",
+          "id": 89963392,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "查询当前配送员个人信息接口",
+              "api": {
+                "id": "481781184",
+                "method": "get",
+                "path": "/delivery/emps/me",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "143567756",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "当前登录配送员的详细信息"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "配送员查看自己的详细信息（从ThreadLocal获取当前登录用户ID）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "修改当前配送员信息接口",
+              "api": {
+                "id": "481781185",
+                "method": "put",
+                "path": "/delivery/emps/me",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "163616092",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/284115490",
+                    "description": "修改参数，包含 id(用户ID)、username(用户名)、password(密码)、phone(手机号)、address(收货地址)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "配送员修改自己的个人信息（从ThreadLocal获取当前登录用户ID）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "配送员工控制器",
+          "id": 89963393,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "获取空闲订单列表接口",
+              "api": {
+                "id": "481781186",
+                "method": "get",
+                "path": "/delivery/emp/list",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "144569191",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "空闲订单列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "返回所有未被接单的订单（order.stage = 0），供配送员选择接单",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "接单接口",
+              "api": {
+                "id": "481781187",
+                "method": "post",
+                "path": "/delivery/emp/{ordId}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "ordId#0",
+                      "name": "ordId",
+                      "required": true,
+                      "description": "订单ID",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [
+                    {
+                      "name": "note",
+                      "required": false,
+                      "description": "接单备注（可选）",
+                      "type": "string",
+                      "schema": {
+                        "type": "string"
+                      },
+                      "id": "0LmIMu09em"
+                    }
+                  ],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "179606951",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "配送员接单后，创建配送记录（delivery.stage = 1 配送中），订单状态保持为0（未完成）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "完成配送接口",
+              "api": {
+                "id": "481781188",
+                "method": "put",
+                "path": "/delivery/emp/{ordId}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "ordId#0",
+                      "name": "ordId",
+                      "required": true,
+                      "description": "订单ID",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "132099710",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "配送员确认送达后，更新配送状态为已送达（delivery.stage = 2），订单状态更新为已完成（order.stage = 1）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "获取我的配送订单接口",
+              "api": {
+                "id": "481781189",
+                "method": "get",
+                "path": "/delivery/emp/my",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "105578834",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "当前配送员的配送订单列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "返回当前登录配送员已接单的配送记录（含订单信息和配送信息）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "配送管理控制器（管理员专属）",
+          "id": 89963394,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "查看所有订单接口",
+              "api": {
+                "id": "481781190",
+                "method": "get",
+                "path": "/delivery/admin/list",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "146860935",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "所有订单列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "管理员可以查看系统中所有订单（含配送状态）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "查看订单详情及配送信息接口",
+              "api": {
+                "id": "481781191",
+                "method": "get",
+                "path": "/delivery/admin/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "订单ID",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "115520445",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "订单详情及配送信息"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "根据订单ID返回订单信息和对应的配送记录（order + delivery）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "商品添加与删除控制器",
+          "id": 89963395,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "添加商品接口",
+              "api": {
+                "id": "481781192",
+                "method": "post",
+                "path": "/users/products/{merId}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "merId#0",
+                      "name": "merId",
+                      "required": true,
+                      "description": "商铺ID，从URL路径中自动提取，标识要向哪个商铺添加商品",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "182955080",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success，失败返回 error（无权限或商铺不存在）"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/290724651",
+                    "description": "商品信息，包含：\n                - name: 商品名称（必填）\n                - describe: 商品描述（必填）\n                - img: 商品图片URL（必填，先调用/upload接口上传图片获取）\n                - stage: 商品状态（可选，0有货 1无货）"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "只有商铺的持有者才能成功添加商品\n\n请求流程：\n1. 请求首先经过 UserPermissionFilter 过滤器\n2. 过滤器从请求头中获取 token，校验用户是否登录\n3. 校验通过后，将用户ID存入 Context（ThreadLocal）\n4. 进入本方法，从URL路径中提取商铺ID（merId），接收请求体中的商品信息\n5. 将 merId 注入到 Product 对象中\n6. 调用 ProductService.add() 进行权限校验和商品添加\n7. ProductService.add() 中会校验当前用户是否为该商铺持有者\n\n前端调用示例：\nPOST /users/products/1\nHeader: token=xxx\nBody:{ \"name\": \"苹果\", \"describe\": \"新鲜\", \"img\": \"https://xxx.jpg\", \"stage\": 0}\n（注意：Body中不需要传 merId，它从URL路径 /1 中自动提取）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "上传商品图片到阿里云OSS接口",
+              "api": {
+                "id": "481781193",
+                "method": "post",
+                "path": "/users/products/upload",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "199851227",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回图片的OSS访问URL（可用于商品img字段）"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "multipart/form-data",
+                  "parameters": [
+                    {
+                      "id": 572874481,
+                      "name": "file",
+                      "type": "file",
+                      "required": true,
+                      "description": "上传的图片文件（multipart/form-data格式）"
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "图片上传接口不需要权限校验，因为上传图片本身不涉及商铺数据操作\n前端应先调用此接口上传图片，获取图片URL后再调用添加商品接口\n\n前端调用示例：\nPOST /users/products/upload\nContent-Type: multipart/form-data\nBody: file=图片文件",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "删除商品接口",
+              "api": {
+                "id": "481781194",
+                "method": "delete",
+                "path": "/users/products/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "商品ID，从URL路径中提取",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "127729218",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "只有商品所属商铺的持有者才能删除\n\n权限校验流程：\n1. 请求首先经过 UserPermissionFilter 过滤器，校验用户登录状态\n2. 进入本方法后，调用 ProductService.delete() 进行权限校验\n3. ProductService 会查询商品所属商铺，校验当前用户是否为该商铺持有者\n4. 校验通过后执行删除操作\n\n前端调用示例：\nDELETE /users/products/5\nHeader: token=xxx",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "修改商品上下架状态接口",
+              "api": {
+                "id": "481781195",
+                "method": "put",
+                "path": "/users/products/{id}/stage",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "商品ID，从URL路径中提取",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "109684379",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/290724652",
+                    "description": "包含 stage 字段的请求体"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "商家可以随时设置商品为有货(0)或无货(1)\n只有商品所属商铺的持有者才能修改\n\n前端调用示例：\nPUT /users/products/5/stage\nHeader: token=xxx\nBody:{ \"stage\": 0}",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "修改商品图片接口（删除图片）",
+              "api": {
+                "id": "481781196",
+                "method": "put",
+                "path": "/users/products/{id}/img",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "商品ID，从URL路径中提取",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "108710387",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/290724653",
+                    "description": "包含 img 字段的请求体"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "将商品图片设置为空字符串，即删除图片\n只有商品所属商铺的持有者才能修改\n\n前端调用示例：\nPUT /users/products/5/img\nHeader: token=xxx\nBody:{ \"img\": \"\"}",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 30,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "查询商铺商品列表接口",
+              "api": {
+                "id": "481781197",
+                "method": "get",
+                "path": "/users/products/merchant/{merId}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "merId#0",
+                      "name": "merId",
+                      "required": true,
+                      "description": "商铺ID",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "147799485",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "该商铺下的所有商品列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "商户查看自己商铺下的所有商品",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 36,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "商品查询控制器",
+          "id": 89963396,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "分页查询商品列表接口",
+              "api": {
+                "id": "481781198",
+                "method": "post",
+                "path": "/productss",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "138356495",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "分页结果，包含总记录数和当前页商品列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/290724654",
+                    "description": "分页查询参数，包含 page(页码，默认1)、pageSize(每页数量，默认10)、name(商品名称，可选)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "支持按商品名称模糊查询，返回分页数据",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "selectByMerId",
+              "api": {
+                "id": "481781199",
+                "method": "post",
+                "path": "/productss/merchant/{merId}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "merId#0",
+                      "name": "merId",
+                      "required": true,
+                      "description": "",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "108098590",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "统一响应结果类\n所有API接口返回此对象，前端通过code判断请求是否成功\ncode: 200成功 500失败"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "订单控制器",
+          "id": 89963397,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "添加订单接口",
+              "api": {
+                "id": "481781200",
+                "method": "post",
+                "path": "/users/orders",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "182937045",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/290724656",
+                    "description": "订单参数，包含收货地址(reAddress)和订单明细列表(orderItems)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "用户提交订单，包含商品明细列表\n后端自动设置创建时间和用户ID，不信任前端传值",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "查询当前用户订单列表接口",
+              "api": {
+                "id": "481781201",
+                "method": "get",
+                "path": "/users/orders",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "132182330",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "当前用户的订单列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "从ThreadLocal获取当前登录用户ID，查询该用户的所有订单",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "查询订单详情接口",
+              "api": {
+                "id": "481781202",
+                "method": "get",
+                "path": "/users/orders/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "订单ID",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "170397450",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "订单详细信息"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "只能查询自己的订单详情（Service层做权限校验）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "取消订单接口",
+              "api": {
+                "id": "481781203",
+                "method": "delete",
+                "path": "/users/orders/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "订单ID",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "132982310",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "只能取消自己的订单，且订单状态必须为未支付(status=0)",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "用户管理控制器（用户专属）",
+          "id": 89963398,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "获取当前登录用户信息接口",
+              "api": {
+                "id": "481781204",
+                "method": "get",
+                "path": "/user/me",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "185430267",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "当前登录用户的完整信息（包含 phone、address 等）"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "从ThreadLocal上下文获取当前用户ID，查询并返回完整用户信息",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "修改用户信息接口",
+              "api": {
+                "id": "481781205",
+                "method": "put",
+                "path": "/user",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "194640248",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/284083157",
+                    "description": "修改参数，包含 id(用户ID)、username(用户名)、password(密码)、phone(手机号)、address(收货地址)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "用户修改自己的个人信息（用户名、密码、手机号、地址）",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "用户公开接口控制器",
+          "id": 89963399,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "用户登录接口",
+              "api": {
+                "id": "481781206",
+                "method": "post",
+                "path": "/user/login",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "111243083",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "登录成功返回 LoginReturn 对象（包含 id、username、token），失败返回错误信息"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/284083211",
+                    "description": "登录参数，包含 username(用户名) 和 password(密码)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "根据用户名和密码进行身份验证，验证通过后返回JWT token",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "用户注册接口",
+              "api": {
+                "id": "481781207",
+                "method": "post",
+                "path": "/user/register",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "145187373",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/283249188",
+                    "description": "注册信息，包含 username(用户名)、password(密码)、phone(手机号)、address(收货地址)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "根据用户名、密码、手机号、收货地址创建新用户账号",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "分页查询用户列表接口",
+              "api": {
+                "id": "481781208",
+                "method": "post",
+                "path": "/user",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "126610972",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "分页结果，包含总记录数和当前页用户列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/283249189",
+                    "description": "分页查询参数，包含 page(页码，默认1)、pageSize(每页数量，默认10)、username(用户名，可选)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "支持按用户名模糊查询，返回分页数据",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "查询用户详情接口",
+              "api": {
+                "id": "481781209",
+                "method": "get",
+                "path": "/user/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "用户ID，从URL路径中获取",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "158193750",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "用户详细信息"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "根据用户ID查询单个用户的详细信息",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "商铺注册、修改、删除与查询控制器",
+          "id": 89963400,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "注册商铺接口",
+              "api": {
+                "id": "481781210",
+                "method": "post",
+                "path": "/shops/register",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "168359655",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/284115573",
+                    "description": "注册信息，包含 name(商铺名称)、person(联系人)、phone(联系电话)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "用户创建商铺，自动与当前登录用户ID绑定",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "修改商铺信息接口",
+              "api": {
+                "id": "481781211",
+                "method": "put",
+                "path": "/shops/update",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "101196792",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/284076225",
+                    "description": "修改参数，包含 id(商铺ID)、name(商铺名称)、person(联系人)、phone(联系电话)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "商铺持有者修改自己的商铺信息",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "删除商铺接口",
+              "api": {
+                "id": "481781212",
+                "method": "delete",
+                "path": "/shops/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "商铺ID，从URL路径中获取",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "163603795",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "操作结果，成功返回 success"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "根据商铺ID删除商铺",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "查询当前用户商铺接口",
+              "api": {
+                "id": "481781213",
+                "method": "get",
+                "path": "/shops",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "122858150",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "当前用户的所有商铺列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "查询当前登录用户的所有商铺信息",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "商铺查询控制器",
+          "id": 89963401,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 7932619,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "分页查询所有商铺接口",
+              "api": {
+                "id": "481781214",
+                "method": "post",
+                "path": "/shopss",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "129179475",
+                    "code": 200,
+                    "jsonSchema": {
+                      "$ref": "#/definitions/282320915",
+                      "description": "分页结果，包含总记录数和当前页商铺列表"
+                    },
+                    "itemSchema": {},
+                    "contentType": "json"
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/290724657",
+                    "description": "分页查询参数，包含 page(页码，默认1)、pageSize(每页数量，默认10)、name(商铺名称，可选)"
+                  },
+                  "oasExtensions": ""
+                },
+                "description": "支持按商铺名称模糊查询，返回分页数据",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 7932619,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "socketCollection": [],
+  "docCollection": [],
+  "webSocketCollection": [],
+  "socketIOCollection": [],
+  "mcpClientCollection": [],
+  "responseCollection": [],
+  "schemaCollection": [
+    {
+      "id": 19977118,
+      "name": "根目录",
+      "visibility": "SHARED",
+      "moduleId": 7932619,
+      "items": [
+        {
+          "name": "Result",
+          "displayName": "",
+          "id": "#/definitions/282320915",
+          "description": "统一响应结果类\n所有API接口返回此对象，前端通过code判断请求是否成功\ncode: 200成功 500失败",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "description": ""
+                },
+                "message": {
+                  "type": "string",
+                  "description": ""
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {},
+                  "description": "",
+                  "x-apifox-orders": []
+                }
+              },
+              "x-apifox-orders": [
+                "code",
+                "message",
+                "data"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "Employee",
+          "displayName": "",
+          "id": "#/definitions/282767678",
+          "description": "员工实体类\n对应数据库表: employee",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "员工ID，主键，自动递增"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "姓名"
+                },
+                "stage": {
+                  "type": "integer",
+                  "description": "状态: 0空闲 1配送中",
+                  "default": 0
+                },
+                "entryTime": {
+                  "type": "string",
+                  "description": "入职日期",
+                  "x-apifox-mock": "@date"
+                },
+                "username": {
+                  "type": "string",
+                  "description": "登录账号"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "登录密码"
+                },
+                "job": {
+                  "type": "integer",
+                  "description": "岗位: 0管理员 1配送员",
+                  "default": 1
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "name",
+                "stage",
+                "entryTime",
+                "username",
+                "password",
+                "job"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "EmployeePut",
+          "displayName": "",
+          "id": "#/definitions/284115490",
+          "description": "员工修改参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": ""
+                },
+                "username": {
+                  "type": "string",
+                  "description": ""
+                },
+                "password": {
+                  "type": "string",
+                  "description": ""
+                },
+                "name": {
+                  "type": "string",
+                  "description": ""
+                },
+                "job": {
+                  "type": "integer",
+                  "description": "岗位"
+                },
+                "stage": {
+                  "type": "integer",
+                  "description": "状态"
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "username",
+                "password",
+                "name",
+                "job",
+                "stage"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "EmployeeLogin",
+          "displayName": "",
+          "id": "#/definitions/284105069",
+          "description": "员工登录参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": ""
+                },
+                "password": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "x-apifox-orders": [
+                "username",
+                "password"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "EmployeePageParam",
+          "displayName": "",
+          "id": "#/definitions/283249170",
+          "description": "员工分页查询参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "",
+                  "default": 1
+                },
+                "pageSize": {
+                  "type": "integer",
+                  "description": "",
+                  "default": 10
+                },
+                "name": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "x-apifox-orders": [
+                "page",
+                "pageSize",
+                "name"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "Product",
+          "displayName": "",
+          "id": "#/definitions/290724651",
+          "description": "商品实体类\n对应数据库表: product",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "商品ID，主键，自动递增"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "商品名称"
+                },
+                "describe": {
+                  "type": "string",
+                  "description": "商品描述"
+                },
+                "img": {
+                  "type": "string",
+                  "description": "商品图片URL，存储于OSS"
+                },
+                "stage": {
+                  "type": "integer",
+                  "description": "状态: 0有货 1无货",
+                  "default": 0
+                },
+                "merId": {
+                  "type": "integer",
+                  "description": "对应商家ID"
+                },
+                "price": {
+                  "type": "number",
+                  "description": "价格"
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "name",
+                "describe",
+                "img",
+                "stage",
+                "merId",
+                "price"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "MapInteger",
+          "displayName": "",
+          "id": "#/definitions/290724652",
+          "description": "包含 stage 字段的请求体",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "integer"
+                }
+              },
+              "x-apifox-orders": [
+                "key"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "MapString",
+          "displayName": "",
+          "id": "#/definitions/290724653",
+          "description": "包含 img 字段的请求体",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                }
+              },
+              "x-apifox-orders": [
+                "key"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "ProductPageParam",
+          "displayName": "",
+          "id": "#/definitions/290724654",
+          "description": "商品分页查询参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码，默认1",
+                  "default": 1
+                },
+                "pageSize": {
+                  "type": "integer",
+                  "description": "每页数量，默认10",
+                  "default": 10
+                },
+                "name": {
+                  "type": "string",
+                  "description": "商品名称（模糊查询）"
+                }
+              },
+              "x-apifox-orders": [
+                "page",
+                "pageSize",
+                "name"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "OrderParam",
+          "displayName": "",
+          "id": "#/definitions/290724656",
+          "description": "订单参数\n用户下单时传递的参数，包含收货地址和订单明细列表",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "订单ID，自增回填"
+                },
+                "usId": {
+                  "type": "integer",
+                  "description": "用户ID，从ThreadLocal获取，不信任前端传值"
+                },
+                "money": {
+                  "type": "number",
+                  "description": "订单金额，后端计算，不信任前端传值"
+                },
+                "reAddress": {
+                  "type": "string",
+                  "description": "收货地址"
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "创建时间，后端自动设置",
+                  "x-apifox-mock": "@date"
+                },
+                "orderItems": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/290724655",
+                    "description": "订单明细实体类\n对应数据库表: order_item"
+                  },
+                  "description": "订单明细列表"
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "usId",
+                "money",
+                "reAddress",
+                "createTime",
+                "orderItems"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "UserPut",
+          "displayName": "",
+          "id": "#/definitions/284083157",
+          "description": "用户修改参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": ""
+                },
+                "username": {
+                  "type": "string",
+                  "description": ""
+                },
+                "password": {
+                  "type": "string",
+                  "description": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "description": ""
+                },
+                "address": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "username",
+                "password",
+                "phone",
+                "address"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "UserLogin",
+          "displayName": "",
+          "id": "#/definitions/284083211",
+          "description": "用户登录参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": ""
+                },
+                "password": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "x-apifox-orders": [
+                "username",
+                "password"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "User",
+          "displayName": "",
+          "id": "#/definitions/283249188",
+          "description": "用户实体类\n对应数据库表: user",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "用户ID，主键，自动递增"
+                },
+                "username": {
+                  "type": "string",
+                  "description": "用户名"
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "手机号"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "登录密码"
+                },
+                "address": {
+                  "type": "string",
+                  "description": "收货地址"
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "注册时间",
+                  "x-apifox-mock": "@date"
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "username",
+                "phone",
+                "password",
+                "address",
+                "createTime"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "UserPageParam",
+          "displayName": "",
+          "id": "#/definitions/283249189",
+          "description": "用户分页查询参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "",
+                  "default": 1
+                },
+                "pageSize": {
+                  "type": "integer",
+                  "description": "",
+                  "default": 10
+                },
+                "username": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "x-apifox-orders": [
+                "page",
+                "pageSize",
+                "username"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "ShopRegister",
+          "displayName": "",
+          "id": "#/definitions/284115573",
+          "description": "商铺注册参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "description": ""
+                },
+                "person": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "x-apifox-orders": [
+                "name",
+                "phone",
+                "person"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "ShopPut",
+          "displayName": "",
+          "id": "#/definitions/284076225",
+          "description": "商铺修改参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": ""
+                },
+                "name": {
+                  "type": "string",
+                  "description": ""
+                },
+                "person": {
+                  "type": "string",
+                  "description": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "name",
+                "person",
+                "phone"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "ShopPageParam",
+          "displayName": "",
+          "id": "#/definitions/290724657",
+          "description": "商铺分页查询参数",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码，默认1",
+                  "default": 1
+                },
+                "pageSize": {
+                  "type": "integer",
+                  "description": "每页数量，默认10",
+                  "default": 10
+                },
+                "name": {
+                  "type": "string",
+                  "description": "商铺名称（模糊查询）"
+                }
+              },
+              "x-apifox-orders": [
+                "page",
+                "pageSize",
+                "name"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        },
+        {
+          "name": "OrderItem",
+          "displayName": "",
+          "id": "#/definitions/290724655",
+          "description": "订单明细实体类\n对应数据库表: order_item",
+          "schema": {
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "明细ID，主键，自动递增"
+                },
+                "ordId": {
+                  "type": "integer",
+                  "description": "对应订单ID"
+                },
+                "proId": {
+                  "type": "integer",
+                  "description": "对应商品ID"
+                },
+                "num": {
+                  "type": "integer",
+                  "description": "商品数量"
+                },
+                "perMoney": {
+                  "type": "number",
+                  "description": "商品单价"
+                },
+                "total": {
+                  "type": "number",
+                  "description": "商品总价"
+                }
+              },
+              "x-apifox-orders": [
+                "id",
+                "ordId",
+                "proId",
+                "num",
+                "perMoney",
+                "total"
+              ]
+            }
+          },
+          "visibility": "INHERITED",
+          "moduleId": 7932619
+        }
+      ]
+    }
+  ],
+  "securitySchemeCollection": [],
+  "oasComponentCollection": [],
+  "requestCollection": [
+    {
+      "name": "根目录",
+      "children": [],
+      "ordering": [
+        "requestFolder.9056132",
+        "httpRequest.5074609"
+      ],
+      "items": []
+    }
+  ],
+  "environments": [],
+  "commonScripts": [],
+  "globalVariables": [],
+  "commonParameters": null,
+  "customFunctions": [],
+  "projectTestCaseCategories": [
+    {
+      "id": 10956299,
+      "name": "正向",
+      "description": "有效的输入和正确的预期结果,代表典型的用法。"
+    },
+    {
+      "id": 10956300,
+      "name": "负向",
+      "description": "消极的、无效的输入,如缺少字段、错误的类型、不支持的方法等。"
+    },
+    {
+      "id": 10956301,
+      "name": "边界值",
+      "description": "极端或边缘条件,如最大字符串长度、空值、零、null等"
+    },
+    {
+      "id": 10956302,
+      "name": "安全性",
+      "description": "可能暴露API安全性风险的测试用例。"
+    },
+    {
+      "id": 10956303,
+      "name": "其他",
+      "description": "其他未归属的测试用例。"
+    }
+  ],
+  "projectTestCaseTags": [
+    {
+      "id": 52029203,
+      "name": "仅传必要字段",
+      "description": "仅发送具有有效值的必填字段,省略所有可选字段,以测试最小有效请求。"
+    },
+    {
+      "id": 52029204,
+      "name": "语义合法",
+      "description": "使用语法正确且在业务逻辑或域上下文中也有意义的值。"
+    },
+    {
+      "id": 52029205,
+      "name": "覆盖枚举组合",
+      "description": "对所有枚举型参数,应用正交设计系统地构建参数及其枚举值的测试用例组合,专用于测试枚举覆盖率"
+    },
+    {
+      "id": 52029206,
+      "name": "其他正向",
+      "description": "提供符合API规范的真实有效的输入,产生正确和预期的结果。"
+    },
+    {
+      "id": 52029207,
+      "name": "缺失必填字段",
+      "description": "在请求主体或参数中省略一个或多个必需字段。"
+    },
+    {
+      "id": 52029208,
+      "name": "无效值",
+      "description": "提供的值类型和格式正确,但在逻辑上对该字段无效。"
+    },
+    {
+      "id": 52029209,
+      "name": "类型错误",
+      "description": "使用数据类型不正确的值,例如发送字符串而不是整数。"
+    },
+    {
+      "id": 52029210,
+      "name": "格式错误",
+      "description": "以不正确的格式提供值,例如,错误的日期模式,格式错误的电子邮件地址。"
+    },
+    {
+      "id": 52029211,
+      "name": "语义非法",
+      "description": "使用语法正确且格式正确的值,这些值在逻辑上不可能或违反域规则。"
+    },
+    {
+      "id": 52029212,
+      "name": "其他负向",
+      "description": "提供无效或意外的输入,应触发错误处理或拒绝API。"
+    },
+    {
+      "id": 52029213,
+      "name": "Null",
+      "description": "必须是 JSON 字面量 `null`(不是空的,也不是 \"null\")。"
+    },
+    {
+      "id": 52029214,
+      "name": "零值",
+      "description": "必须是数字字面值0。"
+    },
+    {
+      "id": 52029215,
+      "name": "空值",
+      "description": "必须是\"\"。"
+    },
+    {
+      "id": 52029216,
+      "name": "极大值",
+      "description": "Max/min值 - 为数字或日期字段提供精确的最小值和最大值。"
+    },
+    {
+      "id": 52029217,
+      "name": "极小值",
+      "description": "Max/min值 - 为数字或日期字段提供精确的最小值和最大值。"
+    },
+    {
+      "id": 52029218,
+      "name": "超出最大边界值",
+      "description": "过长/过短字符串 - 提供超出允许的最小或最大边界的值。"
+    },
+    {
+      "id": 52029219,
+      "name": "超出最小边界值",
+      "description": "过长/过短字符串 - 提供超出允许的最小或最大边界的值。"
+    },
+    {
+      "id": 52029220,
+      "name": "字符串过长",
+      "description": "超出范围的值 - 提供大于允许的最大长度或小于要求的最小长度的字符串。"
+    },
+    {
+      "id": 52029221,
+      "name": "字符串过短",
+      "description": "超出范围的值 - 提供大于允许的最大长度或小于要求的最小长度的字符串。"
+    },
+    {
+      "id": 52029222,
+      "name": "对象级别授权缺失",
+      "description": "对象级别授权缺失 - 用户在没有适当授权的情况下访问或操作数据对象。"
+    },
+    {
+      "id": 52029223,
+      "name": "访问控制",
+      "description": "基于角色、权限或属性来限制用户能访问哪些资源、能执行哪些操作"
+    },
+    {
+      "id": 52029224,
+      "name": "认证失败",
+      "description": "认证失败 - 认证薄弱、配置错误或被绕过,导致未授权访问。"
+    },
+    {
+      "id": 52029225,
+      "name": "SQL注入",
+      "description": "在输入字段中插入恶意SQL代码,测试是否存在SQL注入漏洞。"
+    },
+    {
+      "id": 52029226,
+      "name": "XSS注入",
+      "description": "注入JavaScript或HTML标签来测试跨站点脚本漏洞。"
+    },
+    {
+      "id": 52029227,
+      "name": "模糊输入",
+      "description": "发送大型或随机生成的有效载荷,以测试输入的有效性和稳定性。"
+    },
+    {
+      "id": 52029228,
+      "name": "命令行注入",
+      "description": "将shell命令插入输入以测试命令执行漏洞。"
+    },
+    {
+      "id": 52029229,
+      "name": "JSON注入",
+      "description": "插入恶意或意外的JSON结构来测试解析和验证。"
+    },
+    {
+      "id": 52029230,
+      "name": "NoSQL注入",
+      "description": "提供NoSQL特定的恶意查询或操作符来测试注入漏洞。"
+    },
+    {
+      "id": 52029231,
+      "name": "其他",
+      "description": "其他未归属的测试用例。"
+    }
+  ],
+  "projectAssociations": [],
+  "moduleSettings": [
+    {
+      "id": "7932619",
+      "name": "默认模块",
+      "description": "",
+      "moduleVariables": [],
+      "openApiInfo": {}
+    }
+  ]
+}
