@@ -442,3 +442,85 @@ CREATE TABLE `delivery` (
 分别部署两个ngnix服务器
 
 大部分由ai审查和编写
+
+## 7.redis
+
+spring boot 4＋ 需要手动创建工厂，
+
+```java
+@Bean
+public RedisConnectionFactory redisConnectionFactory() {
+    log.info("========== 创建Redis连接工厂 ==========");
+    log.info("host: {}", host);
+    log.info("port: {}", port);
+    log.info("password: {}", password != null && !password.isEmpty() ? "已设置" : "未设置");
+    log.info("database: {}", database);
+    log.info("======================================");
+
+    RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
+    config.setHostName(host);
+    config.setPort(port);
+    if (password != null && !password.isEmpty()) {
+        config.setPassword(password);
+    }
+    config.setDatabase(database);
+    return new LettuceConnectionFactory(config);
+}
+```
+
+创建redis模板
+
+```java
+@Bean
+public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    log.info("创建redis模板对象");
+    RedisTemplate redisTemplate = new RedisTemplate();
+    redisTemplate.setConnectionFactory(redisConnectionFactory);
+    redisTemplate.setKeySerializer(new StringRedisSerializer());
+    return redisTemplate;
+}
+```
+
+接单中，如果存在分布式的情况，可以防止order被重复接取
+
+```java
+@Override
+@Transactional
+public void accept(Integer ordId, String note) {
+    Integer empId = Context.getId();
+    String lockKey = "delivery:lock:" + ordId;
+
+    // SETNX：只有 key 不存在时才能设置成功，返回 true 表示抢到锁
+    Boolean locked = redisTemplate.opsForValue()
+            .setIfAbsent(lockKey, String.valueOf(empId), Duration.ofSeconds(30));
+
+    if (Boolean.FALSE.equals(locked)) {
+        throw new RuntimeException("该订单已被其他配送员接单");
+    }
+
+    try {
+        // 二次检查数据库，防止锁过期后残留数据被误接
+        Delivery existing = deliveryMapper.selectByOrdId(ordId);
+        if (existing != null) {
+            throw new RuntimeException("该订单已被其他配送员接单");
+        }
+
+        Delivery delivery = new Delivery();
+        delivery.setEmpId(empId);
+        delivery.setOrdId(ordId);
+        delivery.setStage(1);
+        delivery.setNote(note);
+        //修改员工状态为1
+        employeeMapper.getById(empId);
+        //修改订单状态
+        orderMapper.getById(ordId);
+        deliveryMapper.addByDelivery(delivery);
+    } catch (Exception e) {
+        // 业务失败时释放锁，让其他配送员可以重试
+        redisTemplate.delete(lockKey);
+        throw e;
+    }
+}
+```
+
+创建分布式锁解决ngnix分发多客户端的并发问题。
